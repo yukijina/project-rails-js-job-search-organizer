@@ -1,0 +1,25 @@
+<%= form_for [company, @position] do |f| %>
+<!-- this is not necessary because nested route has params[:company_id] -->
+<%#= f.hidden_field :company_id %>
+  <div class="form-group">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Brief description" %><br>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :salary %><br>
+    <%= f.number_field :salary, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :full_time %>
+    <%= f.check_box :full_time %>
+  </div>
+
+  <%= f.submit %>
+<% end %>
