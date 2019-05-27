@@ -25,7 +25,18 @@ class PositionsController < ApplicationController
 
   def show
     @position = Position.find_by(id: params[:id])
+  end
 
+  def edit
+    @position = Position.find_by(id: params[:id])
+  end
+
+  def update
+    @position = Position.find_by(id: params[:id])
+    @position.update(position_params)
+    redirect_to company_position_path(@position.company, @position)
+
+    #error message if else
   end
 
   private
