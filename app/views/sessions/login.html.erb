@@ -1,1 +1,19 @@
 <h1>Login Page</h1>
+
+<%= form_for @user, url: "/login" do |f| %>
+
+  <div class="form-group">
+    <%= f.label :email %><br>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password %><br>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+
+  <div class="btn">
+    <%= f.submit %>
+  </div>
+
+<% end %>
