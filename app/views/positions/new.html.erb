@@ -1,7 +1,8 @@
 <h1>Create a position</h1>
 
 <%= form_for [@company, @position] do |f| %>
-<%= f.hidden_field :company_id %>
+<!-- this is not necessary because nested route has params[:company_id] -->
+<%#= f.hidden_field :company_id %>
   <div class="form-group">
     <%= f.label :title %><br>
     <%= f.text_field :title, class: "form-control" %>
