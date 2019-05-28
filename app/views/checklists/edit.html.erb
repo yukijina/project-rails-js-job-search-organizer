@@ -1,0 +1,8 @@
+<h1><%= @user.username %>'s Checklist Edit page</h1>
+
+<%= form_for [@user, @checklist] do |f| %>
+  <p>Resume sent? <%= f.check_box :resume %></p>
+  <p>Interview completed? <%= f.check_box :interview %></p>
+  <p>All done? <%= f.check_box :completed %></p>
+  <p><%= f.submit %></p>
+<% end %>
