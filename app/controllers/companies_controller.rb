@@ -14,6 +14,16 @@ class CompaniesController < ApplicationController
     @company = Company.find_by(id: params[:id])
   end
 
+  def edit
+    @company = Company.find_by(id: params[:id])
+  end
+
+  def update
+    @company = Company.find_by(id: params[:id])
+    @company.update(company_params)
+    redirect_to company_path(@company)
+  end
+
   private
     def company_params
       params.require(:company).permit(:name, :city, :contact_person, :email, :phone_number)
