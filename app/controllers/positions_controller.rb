@@ -12,6 +12,7 @@ class PositionsController < ApplicationController
 
       if @company && @position
         @position.save
+        current_user.checklists.create(company_id: @company.id, position_id: @position.id)
         redirect_to company_position_path(@company, @position)
       else
         #need error message

@@ -7,7 +7,6 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     @company.save
-    current_user.companies << @company
     redirect_to company_path(@company)
   end
 
