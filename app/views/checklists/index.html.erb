@@ -3,19 +3,17 @@
 <table class="table table-borderless">
   <thead class="thead-light">
     <tr>
-      <!--<th rowspan="2">Position ID</th>-->
-      <th rowspan="2">Company</th>
-      <th rowspan="2">City</th>
-      <th rowspan="2">Title</th>
-      <th rowspan="2">Description</th>
-      <th rowspan="2">Full time</th>
-      <th colspan="3">click to update check box</th>
-    </tr>
-    <tr>
+      <th scope="col">Company</th>
+      <th scope="col">City</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Full time</th>
       <th scope="col">Resume</th>
       <th scope="col">Interview</th>
       <th scope="col">complete</th>
+      <th scope="col">note</th>
       <th scope="col">update progress</th>
+      <th colspan="2">Edit inforamtion</th>
     </tr>
   </thead>
 
@@ -30,19 +28,23 @@
         <td><%= position.description %></td>
         <td><%= position.full_time %></td>
 
+
     <% if !@checklists.nil? %>
       <% @checklists.each do |checklist| %>
         <td><%= checklist.resume %></td>
         <td><%= checklist.interview %></td>
         <td><%= checklist.completed %></td>
-
+        <td><%= checklist.note %></td>
+        <td><%= link_to "update", edit_user_checklist_path(@user, checklist) %></td>
+        <td><%= link_to "company", edit_company_path(checklist.company)  %></td>
+        <td><%= link_to "position", edit_company_position_path(checklist.company, checklist.position) %></td>
     </tr>
       <% end %>
     <% end %>
     <% end %> <!-- end of @position -->
     <% end %> <!-- end of @company -->
 
-   %>
+
   </tbody>
 
 </table>
