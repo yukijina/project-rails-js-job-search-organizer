@@ -8,4 +8,4 @@
 
 
 <%= link_to "Edit position", edit_company_position_path(@position.company, @position) %><br>
-<%= link_to "add on checklist, " %>
+<%= link_to "Go to your checklist", user_checklists_path(current_user) %>
