@@ -13,18 +13,17 @@
       <th scope="col">complete</th>
       <th scope="col">note</th>
       <th scope="col">update progress</th>
-      <th colspan="2">Edit inforamtion</th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
     <% @companies.each do |company| %>
-        <td><%= company.name %></td>
+        <td><%= link_to company.name, company_path(company) %></td>
         <td><%= company.city %></td>
 
     <% @positions.each do |position| %>
-        <td><%= position.title %></td>
+        <td><%= link_to position.title, company_position_path(company, position) %></td>
         <td><%= position.description %></td>
         <td><%= position.full_time %></td>
 
@@ -36,8 +35,6 @@
         <td><%= checklist.completed %></td>
         <td><%= checklist.note %></td>
         <td><%= link_to "update", edit_user_checklist_path(@user, checklist) %></td>
-        <td><%= link_to "company", edit_company_path(checklist.company)  %></td>
-        <td><%= link_to "position", edit_company_position_path(checklist.company, checklist.position) %></td>
     </tr>
       <% end %>
     <% end %>
