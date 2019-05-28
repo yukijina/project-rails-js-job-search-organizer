@@ -1,7 +1,6 @@
 <h1>Create a company</h1>
-
 <%= form_for @company do |f| %>
-
+<%#= f.hidden_field :user_id, value: current_user.id %>
   <div class="form-group">
     <%= f.label :name %><br>
     <%= f.text_field :name, class: "form-control" %>
@@ -27,5 +26,36 @@
     <%= f.phone_field :phone_number, class: "form-control" %>
   </div>
 
+
   <%= f.submit %>
 <% end %>
+
+
+<%# if current_user %>
+<!--User ID: --> <%#= current_user.id %>
+<!-- User name: --> <%#= current_user.username %>
+<%#= f.hidden_field :user_id, value: current_user.id %>
+<%# end %>
+
+
+<!--<p>Register a position in this company</p>-->
+<%#= f.fields_for :position, f.object.positions.build do |position_f| %>
+
+  <!--<div class="form-group">
+    <%#= position_f.label :title %>
+    <%#= position_f.text_field :title, class: "form-control" %>
+  <!--</div>
+  <!--<div class="form-group">
+    <%#= position_f.label :description %>
+    <%#= position_f.text_field :description, class: "form-control" %>
+  <!--</div>
+  <!--<div class="form-group">
+    <%#= position_f.label :salary %>
+    <%#= position_f.text_field :salary, class: "form-control" %>
+  <!--</div>
+  <!--<div class="form-group">
+    <%#= position_f.label :full_time %>
+    <%#= position_f.check_box :full_time %>
+  <!--</div>-->
+
+<%# end %>
