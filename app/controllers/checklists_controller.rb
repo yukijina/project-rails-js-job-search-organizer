@@ -18,20 +18,26 @@ class ChecklistsController < ApplicationController
 
   end
 
+  def show
+    @user = User.find_by(id: params[:user_id])
+  end
+
   def edit
+    @user = User.find_by(id: params[:user_id])
+    @checklist = Checklist.find_by(id: params[:id])
 
   end
 
   def update
-    if params[:position_id]
-      @checklist = Checklist.find_by(id: params[:checklist][:id])
+    if params[:user_id]
+      @checklist = Checklist.find_by(id: params[:id])
       if @checklist
         @checklist.update(checklist_params)
-      elsif @checklist.nil?
-        @checklist = @user.checklists.build(checklist_params)
-        @checklist.position_id = params[:position_id]
-        @checklist.save
-        render 'index'
+      # elsif @checklist.nil?
+      #   @checklist = @user.checklists.build(checklist_params)
+      #   @checklist.user_id = params[:user_id]
+      #   @checklist.save
+        redirect_to user_checklists_path(current_user)
       end
     end
   end
