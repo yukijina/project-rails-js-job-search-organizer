@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show] do
-    resources :checklists, only: [:index]
+    resources :checklists, only: [:index, :new, :create]
   end
 
   root 'sessions#home'
