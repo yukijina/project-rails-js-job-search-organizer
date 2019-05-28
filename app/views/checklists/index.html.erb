@@ -1,0 +1,48 @@
+<h1><%= current_user.username %>'s checklist</h1>
+
+<table class="table table-borderless">
+  <thead class="thead-light">
+    <tr>
+      <!--<th rowspan="2">Position ID</th>-->
+      <th rowspan="2">Company</th>
+      <th rowspan="2">City</th>
+      <th rowspan="2">Title</th>
+      <th rowspan="2">Description</th>
+      <th rowspan="2">Full time</th>
+      <th colspan="3">click to update check box</th>
+    </tr>
+    <tr>
+      <th scope="col">Resume</th>
+      <th scope="col">Interview</th>
+      <th scope="col">complete</th>
+      <th scope="col">update progress</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+    <% @companies.each do |company| %>
+        <td><%= company.name %></td>
+        <td><%= company.city %></td>
+
+    <% @positions.each do |position| %>
+        <td><%= position.title %></td>
+        <td><%= position.description %></td>
+        <td><%= position.full_time %></td>
+
+    <% if !@checklists.nil? %>
+      <% @checklists.each do |checklist| %>
+        <td><%= checklist.resume %></td>
+        <td><%= checklist.interview %></td>
+        <td><%= checklist.completed %></td>
+
+    </tr>
+      <% end %>
+    <% end %>
+    <% end %> <!-- end of @position -->
+    <% end %> <!-- end of @company -->
+
+   %>
+  </tbody>
+
+</table>
