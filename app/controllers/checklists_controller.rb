@@ -12,7 +12,6 @@ class ChecklistsController < ApplicationController
   end
 
   def create
-    binding.pry
     @user = User.find_by(id: params[:user_id])
     @checklist = @user.checklists.build(checklist_params)
 
@@ -44,7 +43,7 @@ class ChecklistsController < ApplicationController
 
   private
     def checklist_params
-      params.require(:checklist).permit(:resume, :interview, :completed)
+      params.require(:checklist).permit(:resume, :interview, :completed, :note)
     end
 
 end
