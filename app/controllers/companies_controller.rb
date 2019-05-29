@@ -1,5 +1,9 @@
 class CompaniesController < ApplicationController
 
+  def index
+    @companies = current_user.companies
+  end
+
   def new
     @company = Company.new
   end
