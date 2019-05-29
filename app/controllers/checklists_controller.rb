@@ -2,9 +2,10 @@ class ChecklistsController < ApplicationController
 
   def index
     @user = User.find_by(id: params[:user_id])
+    @checklists = @user.checklists
     @companies = @user.companies
     @positions = @user.positions
-    @checklists = @user.checklists
+    #binding.pry
   end
 
   def new

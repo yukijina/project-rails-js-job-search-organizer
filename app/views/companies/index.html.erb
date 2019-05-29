@@ -1,0 +1,10 @@
+<h1>All Companies</h1>
+
+<% @companies.each do |company| %>
+  <h2><%= company.name %></h2>
+  <p>City: <%= company.city %></p>
+  <p>Contact: <%= company.contact_person %></p>
+  <p>Email: <%= company.email %></p>
+  <p>Phone: <%= company.phone_number %></p>
+  <p><%= link_to "add position", new_company_position_path(company) %></p>
+<% end %>
