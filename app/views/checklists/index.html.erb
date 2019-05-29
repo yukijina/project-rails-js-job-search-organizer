@@ -17,31 +17,23 @@
   </thead>
 
   <tbody>
+
+    <% @checklists.each do |checklist| %>
     <tr>
-    <% @companies.each do |company| %>
-        <td><%= link_to company.name, company_path(company) %></td>
-        <td><%= company.city %></td>
-
-    <% @positions.each do |position| %>
-        <td><%= link_to position.title, company_position_path(company, position) %></td>
-        <td><%= position.description %></td>
-        <td><%= position.full_time %></td>
-
-
-    <% if !@checklists.nil? %>
-      <% @checklists.each do |checklist| %>
-        <td><%= checklist.resume %></td>
-        <td><%= checklist.interview %></td>
-        <td><%= checklist.completed %></td>
-        <td><%= checklist.note %></td>
-        <td><%= link_to "update", edit_user_checklist_path(@user, checklist) %></td>
-    </tr>
-      <% end %>
+      <td><%= link_to checklist.company.name, company_path(checklist.company) %></td>
+      <td><%= checklist.company.city %></td>
+      <td><%= link_to checklist.position.title, company_position_path(checklist.company, checklist.position) %></td>
+      <td><%= checklist.position.description %></td>
+      <td><%= checklist.position.full_time %></td>
+      <td><%= checklist.resume %></td>
+      <td><%= checklist.interview %></td>
+      <td><%= checklist.completed %></td>
+      <td><%= checklist.note %></td>
+      <td><%= link_to "update", edit_user_checklist_path(@user, checklist) %></td>
     <% end %>
-    <% end %> <!-- end of @position -->
-    <% end %> <!-- end of @company -->
-
-
+    </tr>
   </tbody>
-
 </table>
+
+  <p><%= link_to "company's list", companies_path %></p>
+  <p><%= link_to "add company", new_company_path %></p>
