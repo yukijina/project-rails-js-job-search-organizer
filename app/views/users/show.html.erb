@@ -1,5 +1,21 @@
-<h1>Hello, <%= @user.username %></h1>
+<% if !@user.checklists.empty? %>
+  <h1>Welcome Back, <%= @user.username %>!</h1>
+  <p>Your email: <%= @user.email %></p>
+  <p><%= link_to "Go to your checklist", user_checklists_path(@user) %></p>
 
-<p>Your email: <%= @user.email %></p>
+  <p>Or create <%= link_to " a new list", new_company_path %></p>
 
-<%= link_to "Add company you applied to", new_company_path %>
+
+<% else %>
+  <h1>Welcome, <%= @user.username %>!</h1>
+  <p>Your email: <%= @user.email %></p>
+
+  <h2>How to use Job Search Organizer?</h2>
+  <h5>First step: </h5>
+  <p>Add a company and positon you are intersted in. It creates your original checklist.</p>
+  <h5>Second step:</h5>
+  <p>Update your checklist when you sent resume, had an interview and completed. Add some notes inf your lists if you like!</p>
+
+  <%= link_to "Let's go to first step", new_company_path %>
+
+<% end %>
