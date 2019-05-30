@@ -1,3 +1,4 @@
+<p><%= flash[:message] %></p>
 <% if !@user.checklists.empty? %>
   <h1>Welcome Back, <%= @user.username %>!</h1>
   <p>Your email: <%= @user.email %></p>
