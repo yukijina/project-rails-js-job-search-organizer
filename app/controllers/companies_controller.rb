@@ -9,9 +9,14 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @company = Company.new(company_params)
-    @company.save
-    redirect_to company_path(@company)
+    if params[:company][:id]
+      @company = Company.find_by(id: params[:company][:id])
+      redirect_to new_company_position_path(@company)
+    else
+      @company = Company.new(company_params)
+      @company.save
+      redirect_to company_path(@company)
+    end
   end
 
   def show
