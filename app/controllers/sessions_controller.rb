@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      flash[:message] = "Email and Password do not match. Please enter the correct inforamtion."
+      flash[:message] = "Please enter the correct information."
       redirect_to login_path
     end
   end
@@ -35,6 +35,7 @@ class SessionsController < ApplicationController
       redirect_to '/'
     else
       session[:user_id] = nil
+    end
   end
 
   private
