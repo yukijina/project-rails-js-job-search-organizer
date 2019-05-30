@@ -1,9 +1,9 @@
 class PositionsController < ApplicationController
+  before_action :require_login
 
   def new
     @company = Company.find_by(id: params[:company_id])
     @position = @company.positions.build
-    #@position = Position.new
   end
 
   def create

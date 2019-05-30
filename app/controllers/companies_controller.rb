@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
-
+  before_action :require_login
+  
   def index
     @companies = current_user.companies
   end

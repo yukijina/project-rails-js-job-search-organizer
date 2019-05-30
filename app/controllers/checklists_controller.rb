@@ -1,11 +1,11 @@
 class ChecklistsController < ApplicationController
+  before_action :require_login
 
   def index
     @user = User.find_by(id: params[:user_id])
     @checklists = @user.checklists
     @companies = @user.companies
     @positions = @user.positions
-    #binding.pry
   end
 
   def new
