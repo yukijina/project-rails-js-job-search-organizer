@@ -1,6 +1,6 @@
 <h1>Create your account</h1>
 
-<p><%= flash[:message] if flash[:message]%></p>
+<p><%= flash[:message] %></p>
 
 <%= form_for @user, url: "/login" do |f| %>
   <div class="form-group">
