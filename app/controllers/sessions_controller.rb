@@ -29,8 +29,12 @@ class SessionsController < ApplicationController
 
   #logout
   def destroy
-    session.delete :user_id
-    redirect_to '/'
+    if session[:user_id].present?
+      session.delete :user_id
+      flash[:message] = "You're successully logged out"
+      redirect_to '/'
+    else
+      session[:user_id] = nil
   end
 
   private
