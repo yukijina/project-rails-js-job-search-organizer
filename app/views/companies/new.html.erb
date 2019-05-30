@@ -1,9 +1,13 @@
-<h1>Create a company</h1>
+<div class="my-5">
+  <h1>First step</h1>
+  <h2>Register a company</h2>
+</div>
+
 <% if !current_user.companies.empty? %>
   <%= form_for @company do |f| %>
     <%= f.collection_select :id, current_user.companies, :id, :name, {prompt: "select a company"} %>
     <%= f.submit "Next - create a position" %>
-    <p>Or create a new company</p>
+    <p class="mt-5">Or create a new company</p>
     <%= render "form" %>
    <% end %>
 <% else %>

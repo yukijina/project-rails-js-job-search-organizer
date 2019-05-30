@@ -1,22 +1,33 @@
 <p><%= flash[:message] %></p>
 <% if !@user.checklists.empty? %>
-  <h1>Welcome Back, <%= @user.username %>!</h1>
+<div class="mt-5">
+  <h1>Welcome Back, <%= @user.username %> !</h1>
   <p>Your email: <%= @user.email %></p>
-  <p><%= link_to "Go to your checklist", user_checklists_path(@user) %></p>
+  <p class="mt-5"><%= link_to "Go to your checklist", user_checklists_path(@user) %></p>
 
   <p>Or create <%= link_to " a new list", new_company_path %></p>
-
+</div>
 
 <% else %>
+<div class="mt-5">
   <h1>Welcome, <%= @user.username %>!</h1>
   <p>Your email: <%= @user.email %></p>
+</div>
 
+<div class="mt-5">
   <h2>How to use Job Search Organizer?</h2>
+</div>
+<div class="mt-4">
   <h5>First step: </h5>
-  <p>Add a company and positon you are intersted in. It creates your original checklist.</p>
+  <p>Create your own checklist. Add a company and positon you are intersted in.</p>
+</div>
+
+<div class="mt-4">
   <h5>Second step:</h5>
-  <p>Update your checklist when you sent resume, had an interview and completed. Add some notes inf your lists if you like!</p>
+  <p>Update your checklist. You can add progress (resume, interview, completed) and a brief note.</p>
+</div>
 
+<div class="mt-5">
   <%= link_to "Let's get started", new_company_path %>
-
+</div>
 <% end %>

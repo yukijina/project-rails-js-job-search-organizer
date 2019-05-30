@@ -1,4 +1,6 @@
-<h1>Create your account</h1>
+<div class="my-5">
+  <h1>Let's get started</h1>
+</div>
 
 <p><%= flash[:message] %></p>
 
@@ -13,8 +15,8 @@
     <%= f.password_field :password, class: "form-control" %>
   </div>
 
-  <div class="btn">
-    <%= f.submit "Log In" %>
+  <div class="mt-3">
+    <%= f.submit "Log In", class: "btn btn-outline-dark" %>
   </div>
 
 <% end %>
