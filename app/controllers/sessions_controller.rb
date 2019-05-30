@@ -7,7 +7,12 @@ class SessionsController < ApplicationController
   #login - form
   def new
     @user = User.new
-    render 'login'
+    if logged_in?
+      flash[:message] = "You are alrady logged in"
+      redirect_to user_path(current_user)
+    else
+      render 'login'
+    end
   end
 
   #login
