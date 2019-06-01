@@ -1,9 +1,6 @@
 <h1 class="my-5"><%= @company.name %></h1>
 
-<p>Location: <%= @company.city %></p>
-<p>Contact Person: <%= @company.contact_person %></p>
-<p>Email: <%= @company.email %></p>
-<p>Phone: <%= @company.phone_number %></p>
+
 
 <div class="mt-5">
   <%= link_to "Add position", new_company_position_path(@company)  %><br>
