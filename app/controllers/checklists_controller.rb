@@ -1,7 +1,6 @@
 class ChecklistsController < ApplicationController
   before_action :require_login
 
-
   def index
     @user = User.find_by(id: params[:user_id])
     @checklists = @user.checklists
@@ -30,14 +29,8 @@ class ChecklistsController < ApplicationController
   def update
     if params[:user_id]
       @checklist = Checklist.find_by(id: params[:id])
-      if @checklist
-        @checklist.update(checklist_params)
-      # elsif @checklist.nil?
-      #   @checklist = @user.checklists.build(checklist_params)
-      #   @checklist.user_id = params[:user_id]
-      #   @checklist.save
-        redirect_to user_checklists_path(current_user)
-      end
+      @checklist.update(checklist_params)
+      redirect_to user_checklists_path(current_user)
     end
   end
 

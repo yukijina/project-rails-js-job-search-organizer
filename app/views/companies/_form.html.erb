@@ -10,15 +10,15 @@
     <%= f.fields_for :positions do |p| %>
     <div class="form-group">
       <%= p.label :title %><br>
-      <%= p.text_field :title %>
+      <%= p.text_field :title, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= p.label :description %><br>
-      <%= p.text_field :description %>
+      <%= p.text_field :description, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= p.label :salary %><br>
-      <%= p.text_field :salary %>
+      <%= p.text_field :salary, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :full_time %><br>
