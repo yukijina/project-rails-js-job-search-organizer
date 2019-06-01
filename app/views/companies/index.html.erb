@@ -3,21 +3,15 @@
   <thead class="thead-light">
     <tr>
       <th scope="col">Name</th>
-      <th scope="col">City</th>
-      <th scope="col">Contact Person</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
       <th scope="col">Add position</th>
     </tr>
   </thead>
   <tbody>
     <% @companies.each do |company| %>
+      <tr>
       <td><%= link_to company.name, company_path(company) %></td>
-      <td><%= company.city %></td>
-      <td><%= company.contact_person %></td>
-      <td><%= company.email %></td>
-      <td><%= company.phone_number %></td>
       <td><%= link_to "create", new_company_position_path(company) %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
