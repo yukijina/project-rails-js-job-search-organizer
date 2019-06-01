@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_052557) do
+ActiveRecord::Schema.define(version: 2019_06_01_150627) do
 
   create_table "checklists", force: :cascade do |t|
     t.integer "user_id"
@@ -26,10 +26,6 @@ ActiveRecord::Schema.define(version: 2019_05_28_052557) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
-    t.string "city"
-    t.string "contact_person"
-    t.string "email"
-    t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -50,12 +46,6 @@ ActiveRecord::Schema.define(version: 2019_05_28_052557) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "users_companies", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "company_id"
-    t.integer "favorite_rating"
   end
 
 end
