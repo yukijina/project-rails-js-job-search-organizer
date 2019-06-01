@@ -1,22 +1,25 @@
 class CompaniesController < ApplicationController
   before_action :require_login
-  
+
   def index
     @companies = current_user.companies
   end
 
   def new
     @company = Company.new
+    @company.positions.build
   end
 
   def create
-    if params[:company][:id]
-      @company = Company.find_by(id: params[:company][:id])
-      redirect_to new_company_position_path(@company)
-    else
+     if params[:company][:id]
+       @company = Company.find_by(id: params[:company][:id])
+       redirect_to new_company_position_path(@company)
+     else
       @company = Company.new(company_params)
       @company.save
-      redirect_to company_path(@company)
+
+      current_user.checklists.create(company_id: @company.id, position_id: @company.positions.last.id)
+      redirect_to company_position_path(@company, @company.positions.last)
     end
   end
 
@@ -36,10 +39,8 @@ class CompaniesController < ApplicationController
 
   private
     def company_params
-      params.require(:company).permit(:name, :city, :contact_person, :email, :phone_number)
+      params.require(:company).permit(:name, positions_attributes: [:title, :description, :salary, :full_time])
     end
-
-# permit(position: [:title, :description, :salary, :full_time])
 
 
 end
