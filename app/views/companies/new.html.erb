@@ -1,15 +1,16 @@
 <div class="my-5">
-  <h1>First step</h1>
-  <h2>Register a company</h2>
+  <h1>Create your Checklist</h1>
+  <h2>Company</h2>
 </div>
 
-<% if !current_user.companies.empty? %>
+<% if !Company.all.empty? %>
   <%= form_for @company do |f| %>
-    <%= f.collection_select :id, current_user.companies, :id, :name, {prompt: "select a company"} %>
-    <%= f.submit "Next - create a position" %>
-    <p class="mt-5">Or create a new company</p>
-    <%= render "form" %>
-   <% end %>
+    <%= f.collection_select :id, Company.all, :id, :name, {prompt: "select a company"} %>
+    <%= f.submit "add a position"%>
+  <% end %>
+
+  <p class="mt-5">Can't find a company? fill a new company name</p>
+  <%= render "form" %>
 <% else %>
-   <%= render "form" %>
+  <%= render "form" %>
 <% end %>
