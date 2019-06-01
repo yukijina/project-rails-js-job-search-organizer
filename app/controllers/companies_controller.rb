@@ -11,15 +11,18 @@ class CompaniesController < ApplicationController
   end
 
   def create
-     if params[:company][:id]
-       @company = Company.find_by(id: params[:company][:id])
-       redirect_to new_company_position_path(@company)
-     else
+    if params[:company][:id]
+      @company = Company.find_by(id: params[:company][:id])
+      redirect_to new_company_position_path(@company)
+    else
       @company = Company.new(company_params)
-      @company.save
-
-      current_user.checklists.create(company_id: @company.id, position_id: @company.positions.last.id)
-      redirect_to company_position_path(@company, @company.positions.last)
+      @position = @company.positions.last
+      if @company.save
+        current_user.checklists.create(company_id: @company.id, position_id: @position.id)
+        redirect_to company_position_path(@company, @position)
+      else
+        render "new"
+      end
     end
   end
 
