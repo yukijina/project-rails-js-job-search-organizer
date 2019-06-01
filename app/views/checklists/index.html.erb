@@ -1,10 +1,9 @@
-<h1 class="my-5"><%= current_user.username %>'s checklist</h1>
+<h1 class="my-5"><%= current_user.username %>'s Checklist</h1>
 
 <table class="table table-borderless">
   <thead class="thead-light">
     <tr>
-      <th scope="col">Company</th>
-      <th scope="col">City</th>
+      <th scope="col">Name</th>
       <th scope="col">Title</th>
       <th scope="col">Description</th>
       <th scope="col">Full time</th>
@@ -21,7 +20,6 @@
     <% @checklists.each do |checklist| %>
     <tr>
       <td><%= link_to checklist.company.name, company_path(checklist.company) %></td>
-      <td><%= checklist.company.city %></td>
       <td><%= link_to checklist.position.title, company_position_path(checklist.company, checklist.position) %></td>
       <td><%= checklist.position.description %></td>
       <td><%= checklist.position.full_time %></td>
