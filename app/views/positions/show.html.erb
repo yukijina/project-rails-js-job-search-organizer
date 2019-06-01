@@ -1,9 +1,12 @@
-<h1 class="mt-5"><%= @position.title %></h1>
-<h3>at <%= @position.company.name %></h3>
-<p>Desciption: <%= @position.description %></p>
-<p>Salary: <%= @position.salary %></p>
-<!-- need method convert true/false to yes/no -->
-<p>Full time: <%= @position.full_time %></p>
+<h1 class="mt-5"><%= display_title(@position.title) %></h1>
+<h3>at <%= display_name(@position.company) %></h3>
+
+<div class="mt-5">
+  <p>Job Desciption: <%= @position.description %></p>
+  <p><%= number_to_currency(@position.salary) %> a year</p>
+  <!-- need method convert true/false to yes/no -->
+  <p>Full time position: <%= display_check(@position.full_time) %></p>
+</div>
 
 <div class="mt-5">
   <%= link_to "Go to your checklist", user_checklists_path(current_user) %><br>

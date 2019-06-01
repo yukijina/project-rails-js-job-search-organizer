@@ -1,4 +1,4 @@
-<h1 class="my-5"><%= current_user.username %>'s Checklist</h1>
+<h1 class="my-5"><%= display_title(current_user.username) %>'s Checklist</h1>
 
 <table class="table table-borderless">
   <thead class="thead-light">
@@ -22,10 +22,10 @@
       <td><%= link_to checklist.company.name, company_path(checklist.company) %></td>
       <td><%= link_to checklist.position.title, company_position_path(checklist.company, checklist.position) %></td>
       <td><%= checklist.position.description %></td>
-      <td><%= checklist.position.full_time %></td>
-      <td><%= checklist.resume %></td>
-      <td><%= checklist.interview %></td>
-      <td><%= checklist.completed %></td>
+      <td><%= display_check(checklist.position.full_time) %></td>
+      <td><%= display_check(checklist.resume) %></td>
+      <td><%= display_check(checklist.interview) %></td>
+      <td><%= display_check(checklist.completed) %></td>
       <td><%= checklist.note %></td>
       <td><%= link_to "update", edit_user_checklist_path(@user, checklist) %></td>
     <% end %>
