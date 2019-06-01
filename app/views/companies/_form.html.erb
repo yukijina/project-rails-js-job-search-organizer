@@ -6,26 +6,25 @@
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :city %><br>
-    <%= f.text_field :city, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :contact_person %><br>
-    <%= f.text_field :contact_person, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :email %><br>
-    <%= f.email_field :email, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :phone_number %><br>
-    <%= f.phone_field :phone_number, class: "form-control" %>
-  </div>
-
+<h2>Positon details:</h2>
+    <%= f.fields_for :positions do |p| %>
+    <div class="form-group">
+      <%= p.label :title %><br>
+      <%= p.text_field :title %>
+    </div>
+    <div class="form-group">
+      <%= p.label :description %><br>
+      <%= p.text_field :description %>
+    </div>
+    <div class="form-group">
+      <%= p.label :salary %><br>
+      <%= p.text_field :salary %>
+    </div>
+    <div class="form-group">
+      <%= f.label :full_time %><br>
+      <%= p.check_box :full_time %>
+    </div>
+    <% end %>
 
   <%= f.submit %>
 <% end %>
