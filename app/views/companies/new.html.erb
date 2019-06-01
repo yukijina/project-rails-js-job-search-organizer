@@ -1,8 +1,16 @@
 <div class="my-5">
   <h1>Create your Checklist</h1>
-  <h2>Company</h2>
 </div>
+<% if @company.errors %>
+  <h5>Please fill out the form</h5>
+  <ul>
+  <% @company.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
 
+<h2>Company</h2>
 <% if !Company.all.empty? %>
   <%= form_for @company do |f| %>
     <%= f.collection_select :id, Company.all, :id, :name, {prompt: "select a company"} %>
