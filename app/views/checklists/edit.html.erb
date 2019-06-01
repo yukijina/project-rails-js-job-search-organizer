@@ -1,9 +1,27 @@
-<h1><%= @user.username %>'s Checklist Edit page</h1>
+<h1 class="my-5">Update <%= display_title(@user.username) %>'s Checklist</h1>
 
 <%= form_for [@user, @checklist] do |f| %>
-  <p>Resume sent? <%= f.check_box :resume %></p>
-  <p>Interview completed? <%= f.check_box :interview %></p>
-  <p>All done? <%= f.check_box :completed %></p>
-  <p>Add note <%= f.text_field :note %></p>
-  <p><%= f.submit %></p>
+  <div class="form-check">
+    <%= f.check_box :resume, class: "form-check-input" %>
+    <%= f.label "Resume sent?", class: "form-check-label"  %>
+  </div>
+
+  <div class="form-check">
+    <%= f.check_box :interview, class: "form-check-input" %>
+    <%= f.label "Inteview done?", class: "form-check-label"  %>
+  </div>
+
+  <div class="form-check">
+    <%= f.check_box :completed, class: "form-check-input" %>
+    <%= f.label "All done?", class: "form-check-label" %>
+  </div>
+
+  <div class="form-group my-4">
+    <%= f.label "Add Brief Note" %><br>
+    <%= f.text_field :note, class: "form-control" %>
+  </div
+
+  <div>
+    <%= f.submit %>
+  </div>
 <% end %>
