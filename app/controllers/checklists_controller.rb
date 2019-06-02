@@ -34,6 +34,12 @@ class ChecklistsController < ApplicationController
     end
   end
 
+  def destroy
+    checklist = Checklist.find_by(id: params[:id])
+    checklist.destroy
+    redirect_to user_checklists_path(current_user)
+  end
+
   private
     def checklist_params
       params.require(:checklist).permit(:resume, :interview, :completed, :note)
