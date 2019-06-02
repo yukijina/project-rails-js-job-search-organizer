@@ -1,11 +1,13 @@
 <h1 class="text-center">Welcome to Job Search Organizer</h1>
 
-<p><%= flash[:message] %></p>
+<p class="text-danger"><%= flash[:message] %></p>
+
 <div class="row my-5">
   <div class="col-8">
     <img src="https://cdn.pixabay.com/photo/2016/03/14/17/07/pants-1255851_1280.jpg" alt="job search" class="img-fluid">
   </div>
 
+  <% if !logged_in? %>
   <div class="col-4">
     <h5 class="mt-5">My Account</h5>
     <button type="button" class="btn btn-outline-dark btn-lg"><%= link_to "Log In", login_path, class: "btn-outline-dark" %></button>
@@ -14,7 +16,12 @@
     <button type="button" class="btn btn-outline-info btn-lg"><%= link_to "Sign Up", new_user_path, class: "btn-outline-info" %></button><br>
 
     <h5 class="mt-5">Or Log in with <%= link_to "Google", '/auth/google_oauth2' %></h5>
-
+  <% else %>
+  <div class="col-4">
+    <h5><strong><%= display_title(current_user.username) %></strong> is now logged in.</h5>
+    <p><%= link_to "Go to your checklist", user_checklists_path(current_user) %></p>
+  </div>
+  <% end %>
 
   </div>
 
