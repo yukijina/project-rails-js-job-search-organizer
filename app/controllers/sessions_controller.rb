@@ -27,6 +27,14 @@ class SessionsController < ApplicationController
     end
   end
 
+  #login with google
+  def googleAuth
+    @user = User.from_omniauth(auth)
+    @user.save
+    session[:user_id] = @user.id
+    redirect_to user_path(@user)
+  end
+
   #logout
   def destroy
     if session[:user_id].present?
@@ -42,4 +50,10 @@ class SessionsController < ApplicationController
     def user_params
       params.require(:users).permit(:username, :email, :password)
     end
+
+    def auth
+      #Get access tokens from google server
+      request.env['omniauth.auth']
+    end
+
 end
