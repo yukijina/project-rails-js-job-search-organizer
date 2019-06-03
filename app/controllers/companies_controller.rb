@@ -1,8 +1,11 @@
 class CompaniesController < ApplicationController
   before_action :require_login
 
-  def index
-    @companies = current_user.companies
+  def show
+    @company = Company.find_by(id: params[:id])
+    if @company
+      redirect_to company_positions_path(@company)
+    end
   end
 
   def new
@@ -26,10 +29,6 @@ class CompaniesController < ApplicationController
     end
   end
 
-  def show
-    @company = Company.find_by(id: params[:id])
-  end
-
   def edit
     @company = Company.find_by(id: params[:id])
   end
@@ -37,7 +36,7 @@ class CompaniesController < ApplicationController
   def update
     @company = Company.find_by(id: params[:id])
     @company.update(company_params)
-    redirect_to company_path(@company)
+    #redirect_to company_path(@company)
   end
 
   private
