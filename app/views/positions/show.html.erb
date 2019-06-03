@@ -2,10 +2,34 @@
 <h3>at <%= display_name(@position.company) %></h3>
 
 <div class="mt-5">
-  <p>Job Desciption: <%= @position.description %></p>
-  <p><%= number_to_currency(@position.salary) %> a year</p>
-  <!-- need method convert true/false to yes/no -->
-  <p>Full time position: <%= display_check(@position.full_time) %></p>
+<table class="table table-borderless">
+  <tbody>
+    <tr>
+      <th scope="row">Job Desciption</th>
+        <td><%= @position.description %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Salary</th>
+      <td><%= number_to_currency(@position.salary) %> a year</td>
+    </tr>
+
+    <tr>
+      <th scope="row">Full time position</th>
+      <td><%= display_check(@position.full_time) %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Created at</th>
+      <td><%= display_time(@position.created_at) %></td>
+    </tr>
+
+    <tr>
+      <th scope="row">Updated at</th>
+      <td><%= display_time(@position.updated_at) %></td>
+    </tr>
+  </tbody>
+</table>
 </div>
 
 <div class="mt-5">
