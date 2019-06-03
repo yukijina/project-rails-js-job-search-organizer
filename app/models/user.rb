@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   has_many :checklists
   has_many :companies, through: :checklists
-  has_many :positions, through: :companies
+  has_many :positions, through: :checklists
 
   validates :username, :email, :password, presence: true
   validates :email, uniqueness: true
@@ -16,4 +16,15 @@ class User < ApplicationRecord
       user.password = SecureRandom.hex
     end
   end
+
+  def find_positions(id)
+    self.positions.where(company_id: id)
+  end
+
+  # def self.sort_by_name(current_user)
+  #   find(current_user.id).companies.order(name: :asc).map do |company|
+  #     company
+  #   end
+  # end
+
 end
