@@ -12,4 +12,7 @@ module ApplicationHelper
     end
   end
 
+  def display_time(time)
+    time.strftime("%m/%d/%Y at %I:%M%p")
+  end
 end
