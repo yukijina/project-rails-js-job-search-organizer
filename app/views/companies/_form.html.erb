@@ -2,11 +2,11 @@
 <%= form_for @company do |f| %>
 
   <div class="form-group">
-    <%= f.label :name %><br>
+    <%= f.label "Company Name" %><br>
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
-<h2>Positon details:</h2>
+<h5>Positon details:</h5>
     <%= f.fields_for :positions do |p| %>
     <div class="form-group">
       <%= p.label :title %><br>
@@ -20,11 +20,11 @@
       <%= p.label :salary %><br>
       <%= p.text_field :salary, class: "form-control" %>
     </div>
-    <div class="form-group">
-      <%= f.label :full_time %><br>
-      <%= p.check_box :full_time %>
+    <div class="form-group form-check">
+      <%= p.check_box :full_time, class: "form-check-input" %>
+      <%= p.label :full_time %>
     </div>
     <% end %>
 
-  <%= f.submit %>
+  <%= f.submit "Add in your list", class: "btn btn-info" %>
 <% end %>
