@@ -1,6 +1,7 @@
 <div class="my-5">
   <h1>Create your Checklist</h1>
 </div>
+
 <% if @company.errors %>
   <h5>Please fill out the form</h5>
   <ul>
@@ -10,14 +11,14 @@
   </ul>
 <% end %>
 
-<h2>Company</h2>
+<h2 class="mt-3">Company</h2>
 <% if !Company.all.empty? %>
-  <%= form_for @company do |f| %>
-    <%= f.collection_select :id, Company.all, :id, :name, {prompt: "select a company"} %>
-    <%= f.submit "add a position"%>
+  <%= form_for @company, html: {class: "form-inline"} do |f| %>
+    <%= f.collection_select :id, Company.sort_by_name, :id, :name, {prompt: "select a company"}, class: "custom-select my-1 mr-sm-2" %>
+    <%= f.submit "add a position", class: "btn btn-info my-1" %>
   <% end %>
 
-  <p class="mt-5">Can't find a company? fill a new company name</p>
+  <h5 class="mt-5 mb-3">Can't find a company? Fill out the form below:</h5>
   <%= render "form" %>
 <% else %>
   <%= render "form" %>
