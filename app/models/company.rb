@@ -7,10 +7,8 @@ class Company < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   def self.sort_by_name
-    Company.order(:name)
+    order(:name)
   end
+  
 
-  def self.sort_name_desc
-    Comapny.order(name: :desc)
-  end
 end
