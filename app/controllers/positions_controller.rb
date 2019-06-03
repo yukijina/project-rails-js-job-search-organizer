@@ -1,6 +1,14 @@
 class PositionsController < ApplicationController
   before_action :require_login
 
+  def index
+    @company = current_user.companies.find_by(id: params[:company_id])
+    @positions = current_user.find_positions(params[:company_id])
+    if !@company
+      redirect_to companies_path
+    end
+  end
+
   def new
     @company = Company.find_by(id: params[:company_id])
     @position = @company.positions.build
@@ -18,9 +26,7 @@ class PositionsController < ApplicationController
         #need error message
         render 'new'
       end
-    #elsif !@company
-      #need error message
-      #redirect_to company_path
+
     end
   end
 
