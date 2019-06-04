@@ -15,7 +15,7 @@
 <% if !Company.all.empty? %>
   <%= form_for @company, html: {class: "form-inline"} do |f| %>
     <%= f.collection_select :id, Company.sort_by_name, :id, :name, {prompt: "select a company"}, class: "custom-select my-1 mr-sm-2" %>
-    <%= f.submit "add a position", class: "btn btn-info my-1" %>
+    <%= f.submit "Add a position", class: "btn btn-dark my-1" %>
   <% end %>
 
   <h5 class="mt-5 mb-3">Can't find a company? Fill out the form below:</h5>
