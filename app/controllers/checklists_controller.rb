@@ -3,21 +3,26 @@ class ChecklistsController < ApplicationController
 
   def index
     @user = User.find_by(id: params[:user_id])
-    @checklists = @user.checklists
+    if @user
+      @checklists = @user.checklists
+    else
+      page_not_found
+    end
   end
 
   def new
-    @user = User.find_by(id: params[:user_id])
+     @user = User.find_by(id: params[:user_id])
   end
 
   def create
     @user = User.find_by(id: params[:user_id])
     @checklist = @user.checklists.build(checklist_params)
-
+    @checklist.save
+    redirect_to user_checklists_path(@user)
   end
 
   def show
-    @user = User.find_by(id: params[:user_id])
+    page_not_found
   end
 
   def edit
@@ -42,7 +47,12 @@ class ChecklistsController < ApplicationController
 
   private
     def checklist_params
-      params.require(:checklist).permit(:resume, :interview, :completed, :note)
+      params.require(:checklist).permit(:resume, :interview, :completed, :note, :company_id, :user_id, :position_id)
+    end
+
+    def page_not_found
+      flash[:message] = "Oops. Page not found."
+      redirect_to user_checklists_path(current_user)
     end
 
 end
