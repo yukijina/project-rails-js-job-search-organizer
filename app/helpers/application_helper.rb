@@ -6,13 +6,13 @@ module ApplicationHelper
 
   def display_check(text)
     if text == false
-      "No"
+      " "
     else
-      "Yes"
+      "&#10003;".html_safe
     end
   end
 
   def display_time(time)
-    time.strftime("%m/%d/%Y at %I:%M%p")
+    time.strftime("%m/%d/%y")
   end
 end
