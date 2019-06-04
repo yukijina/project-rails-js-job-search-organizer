@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_01_150627) do
+ActiveRecord::Schema.define(version: 2019_06_04_002249) do
 
   create_table "checklists", force: :cascade do |t|
     t.integer "user_id"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2019_06_01_150627) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
+    t.integer "admin_code"
   end
 
 end
