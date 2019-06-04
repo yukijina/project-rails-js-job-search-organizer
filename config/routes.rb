@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   #resources :checklists
   #resources :positions
-  resources :companies, only:[:show, :new, :create, :edit, :update]
-  resources :users
+  resources :companies
+  resources :users, only: [:new, :create, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :companies, only: [:show] do
@@ -21,4 +21,5 @@ Rails.application.routes.draw do
 #Routes for Google authentication
   get '/auth/:provider/callback', to: 'sessions#googleAuth'
   #get 'auth/failure', to: redirect('/')
+
 end
