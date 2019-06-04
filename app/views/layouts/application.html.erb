@@ -25,6 +25,8 @@
           <%= link_to "Log In", login_path, class: "nav-item nav-link" %>
         <% else %>
           <%= link_to "#{display_title(current_user.username)}'s profile", user_path(current_user), class: "nav-item nav-link" %>
+          <%= link_to "Company", companies_path, class: "nav-item nav-link" %>
+          <%= link_to "Checklist", user_checklists_path(current_user), class: "nav-item nav-link" %>
           <%= link_to "Log Out", logout_path, method: :post, class: "nav-item nav-link" %>
         <% end %>
       </div>
@@ -34,6 +36,10 @@
     <div class="container">
       <%= yield %>
     </div>
+
+    <footer class="pt-2">
+      <p class="sm-font">Logged in by <%= current_user.email %>. &copy; 2019 Job Search Organizer</p>
+    </footer>
 
   </body>
 </html>
