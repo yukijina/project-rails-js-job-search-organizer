@@ -3,12 +3,11 @@
 <table class="table table-borderless sm-font">
   <thead class="thead-light">
     <tr>
-      <th scope="col">Title</th>
+      <th scope="col">Position</th>
       <th scope="col">Description</th>
       <th scope="col">Salary</th>
       <th scope="col">Full Time</th>
-      <th scope="col">Created at</th>
-      <th scope="col">Updated at</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -18,19 +17,25 @@
       <td><%= position.description %></td>
       <td><%= number_to_currency(position.salary) %></td>
       <td><%= display_check(position.full_time) %></td>
-      <td><%= display_time(position.created_at) %></td>
-      <td><%= display_time(position.updated_at) %></td>
+      <td>
+        <%= button_to user_checklists_path(current_user.id), class: "btn btn-success btn-sm sm-font" do %>
+        Add to your checklist
+          <input type="hidden" name="checklist[company_id]" value="<%= position.company_id %>">
+          <input type="hidden" name="checklist[position_id]" value="<%= position.id %>">
+        <% end  %>
+      </td>
+
     </tr>
     <% end %>
   </tbody>
 </table>
 
 <div class="mt-5">
-  <%= link_to "Add position to #{display_title(@company.name)}", new_company_position_path(@company)  %><br>
+  <%= link_to "Add a new position to #{display_title(@company.name)}", new_company_position_path(@company), class: "btn btn-info"  %>
 
-  <%= link_to "Create a new list", new_company_path %><br>
+  <%= link_to "Check all companies", companies_path, class: "btn btn-info" %>
 
   <% if !@company.positions.empty? %>
-    <%= link_to "Go to your checklist", user_checklists_path(current_user) %>
+    <%= link_to "Go to your checklist", user_checklists_path(current_user), class: "btn btn-info" %>
   <% end %>
 </div>
