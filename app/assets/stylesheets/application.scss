@@ -20,3 +20,13 @@
 .sm-font {
   font-size: 0.8rem;
 };
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #F8F9FA;
+  color: rgba(#6e6f6f, 0.78);
+  text-align: center;
+}
