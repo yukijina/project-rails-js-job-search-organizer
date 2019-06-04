@@ -1,14 +1,18 @@
 <h1 class="my-5"><%= display_title(current_user.username) %>'s Checklist</h1>
+<p class="text-danger"><%= flash[:message] %></p>
+<% if @checklists.empty? %>
+  <p class="alert alert-warning my-4">Your checklist is empty now. Please create from <%= link_to "here", new_company_path %>.</p>
+<% end %>
 
 <table class="table table-borderless sm-font">
   <thead class="thead-light">
     <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Title</th>
+      <th scope="col">Company</th>
+      <th scope="col">Position</th>
       <th scope="col">Full Time</th>
       <th scope="col">Resume</th>
       <th scope="col">Interview</th>
-      <th scope="col">Complete</th>
+      <th scope="col">Completed</th>
       <th scope="col">Note</th>
       <th scope="col">Last update</th>
       <th scope="col">Progress</th>
@@ -35,5 +39,6 @@
 </table>
 
 <div class="mt-5">
-  <p><%= link_to "create a list", new_company_path %></p>
+  <%= link_to "Create a new list", new_company_path, class: "btn btn-info" %>
+  <%= link_to "Check all companies", companies_path, class: "btn btn-info" %>
 </div>
