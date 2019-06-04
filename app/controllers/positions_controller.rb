@@ -2,10 +2,11 @@ class PositionsController < ApplicationController
   before_action :require_login
 
   def index
-    @company = current_user.companies.find_by(id: params[:company_id])
-    @positions = current_user.find_positions(params[:company_id])
-    if !@company
-      redirect_to companies_path
+    @company = Company.find_by(id: params[:company_id])
+    if @company.nil?
+      company_page_not_found
+    else
+      @positions = @company.positions
     end
   end
 
@@ -32,6 +33,7 @@ class PositionsController < ApplicationController
 
   def show
     @position = Position.find_by(id: params[:id])
+    company_page_not_found if @position.nil?
   end
 
   def edit
