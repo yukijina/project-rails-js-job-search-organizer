@@ -1,9 +1,15 @@
 class CompaniesController < ApplicationController
   before_action :require_login
 
+  def index
+    @companies = Company.all
+  end
+
   def show
     @company = Company.find_by(id: params[:id])
-    if @company
+    if @company.nil?
+      company_page_not_found
+    else
       redirect_to company_positions_path(@company)
     end
   end
@@ -30,7 +36,12 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-    @company = Company.find_by(id: params[:id])
+    if current_user.admin == true
+      @company = Company.find_by(id: params[:id])
+    else
+      flash[:message] = "Only admin can edit the company."
+      redirect_to companies_path
+    end
   end
 
   def update
