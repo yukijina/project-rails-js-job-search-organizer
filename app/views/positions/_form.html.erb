@@ -1,6 +1,15 @@
+<div class="mb-5">
+<% if @position.errors.any? %>
+  <% @position.errors.full_messages.each do |message| %>
+  <ul>
+    <li class="text-danger"><%= message %></li>
+  </ul>
+  <% end %>
+<% end %>
+</div>
+
 <%= form_for [company, @position] do |f| %>
-<!-- this is not necessary because nested route has params[:company_id] -->
-<%#= f.hidden_field :company_id %>
+
   <div class="form-group">
     <%= f.label :title %><br>
     <%= f.text_field :title, class: "form-control" %>
