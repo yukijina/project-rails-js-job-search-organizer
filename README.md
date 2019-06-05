@@ -1,9 +1,8 @@
-# README
+# Job Search Organizer
 
 This is Flatiron School Ruby on Rails project.
 
-# About this project
-## Job Search Organizer.
+## About this project
 User can signup, log in and log out. User can also log in through third party log in(Google).
 User can track their job search progress in their own checklist.
 User can create a company and position, however only admin can edit after they are created.
@@ -13,9 +12,10 @@ User can create a company and position, however only admin can edit after they a
 - Ruby 2.3.3
 - Rails 5.2.3
 
-# Running Locally
+## Running Locally
 Make sure you have Ruby, Bundler.
 
+## Usage
 ### 1. Check out the repository
 `git clone git@github.com:yukijina/project-rails-job-search-organizer.git`
 
@@ -35,6 +35,8 @@ You can start the rails server using the command given below.
 
 Now you can visit the app with http://localhost:3000
 
+## Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/yukijina/project-rails-job-search-organizer. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
 ## License
 This project is licensed under the MIT License.
