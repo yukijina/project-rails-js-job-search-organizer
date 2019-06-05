@@ -36,7 +36,7 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-    if current_user.admin == true
+    if current_user.admin?
       @company = Company.find_by(id: params[:id])
     else
       flash[:message] = "Only admin can edit the company."
@@ -45,9 +45,9 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    @company = Company.find_by(id: params[:id])
-    @company.update(company_params)
-    #redirect_to company_path(@company)
+    company = Company.find_by(id: params[:id])
+    company.update(company_params)
+    redirect_to company_path(company)
   end
 
   private
