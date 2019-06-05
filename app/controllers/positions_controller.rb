@@ -39,10 +39,11 @@ class PositionsController < ApplicationController
 
   def update
     @position = Position.find_by(id: params[:id])
-    @position.update(position_params)
-    redirect_to company_position_path(@position.company, @position)
-
-    #error message if else
+    if @position.update(position_params)
+      redirect_to company_position_path(@position.company, @position)
+    else
+      render :edit
+    end
   end
 
   private
