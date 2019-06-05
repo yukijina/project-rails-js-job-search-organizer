@@ -1,24 +1,39 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is Flatiron School Ruby on Rails project.
 
-Things you may want to cover:
+* About this project
+** Job Search Organizer.
+User can signup, log in and log out. User can also log in through third party log in(Google).
+User can track their job search progress in their own checklist.
+User can create a company and position, however only admin can edit after they are created.
+
 
 * Ruby version
+- Ruby 2.3.3
+- Rails 5.2.3
 
-* System dependencies
+* Running Locally
+Make sure you have Ruby, Bundler.
+1. Check out the repository
+`git clone git@github.com:yukijina/project-rails-job-search-organizer.git`
 
-* Configuration
+2. Go to ththe file
+`cd project-rails-job-search-organizer`
 
-* Database creation
+3. Bundle install
+`bundle`
 
-* Database initialization
+4. Create and Set up database
+`rails db:migrate`
+`rails db:seed`
 
-* How to run the test suite
+5. Start the Rails server
+You can start the rails server using the command given below.
+`bundle rails s`
 
-* Services (job queues, cache servers, search engines, etc.)
+Now you can visit the app with http://localhost:3000
 
-* Deployment instructions
 
-* ...
+## License
+This project is licensed under the MIT License.
