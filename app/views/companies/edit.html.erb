@@ -1,6 +1,12 @@
 <h1 class="my-5">Edit Company</h1>
 
-<%= render "form" %>
+<%= form_for @company do |f| %>
+  <div class="form-group">
+    <%= f.label "Company Name" %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <%= f.submit "Update the company's information", class: "btn btn-info my-5" %>
+<% end %>
 
 <div class="my-5">
   <%= link_to "Back", company_path(@company) %>
