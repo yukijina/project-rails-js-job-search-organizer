@@ -17,16 +17,13 @@ class ChecklistsController < ApplicationController
   def create
     company = Company.find_by(id: params[:checklist][:company_id])
     @user = User.find_by(id: params[:user_id])
-    #binding.pry
-    if list = Checklist.where(user_id: params[:user_id], position_id: params[:checklist][:position_id]).first_or_initialize {|list| list.company_id = params[:checklist][:company_id]}
-      list.save
-      redirect_to user_checklists_path(@user)
-    elsif
-      !list.save
-
+    @checklist = Checklist.find_position(params)
+    if @checklist.persisted?
       flash[:message] = "This position is already in your checklist."
       redirect_back fallback_location: company_positions_path(company)
-
+    else
+      @checklist && @checklist.save
+      redirect_to user_checklists_path(@user)
     end
   end
 
@@ -67,4 +64,4 @@ class ChecklistsController < ApplicationController
 end
 
 
-#User.where(id: params[:user_id]).joins(:checklists).where(position_id: params[:position_id])
+#Checklist.where(user_id: params[:user_id], position_id: params[:checklist][:position_id]).first_or_initialize {|list| list.company_id = params[:checklist][:company_id]}
