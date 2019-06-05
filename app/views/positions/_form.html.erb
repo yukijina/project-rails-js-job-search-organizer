@@ -1,4 +1,4 @@
-<div class="mb-5">
+<div class="my-4">
 <% if @position.errors.any? %>
   <% @position.errors.full_messages.each do |message| %>
   <ul>
@@ -32,3 +32,7 @@
 
   <%= f.submit class: "btn btn-info mt-5" %>
 <% end %>
+
+<div class="my-5">
+  <%= link_to 'Back', url_for(:back) %>
+</div>

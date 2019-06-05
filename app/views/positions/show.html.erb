@@ -36,3 +36,7 @@
   <%= link_to "Go to your checklist", user_checklists_path(current_user), class: "btn btn-info" %>
   <%= link_to "Or edit this position? ", edit_company_position_path(@position.company, @position), class: "btn btn-warning" %>
 </div>
+
+<div class="my-5">
+  <%= link_to 'Back', url_for(:back) %>
+</div>
