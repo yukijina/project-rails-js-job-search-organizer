@@ -19,15 +19,12 @@ class PositionsController < ApplicationController
     if @company = Company.find_by(id: params[:company_id])
       @position = @company.positions.build(position_params)
 
-      if @company && @position
-        @position.save
+      if @company && @position.save
         current_user.checklists.create(company_id: @company.id, position_id: @position.id)
         redirect_to company_position_path(@company, @position)
       else
-        #need error message
-        render 'new'
+        render :new
       end
-
     end
   end
 
