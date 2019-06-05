@@ -11,8 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    #redirect with message
-    return head(:forbidden) unless session.include? :user_id
+    redirect_to root_path, alert: "You have to log in to see the contents." unless session.include? :user_id
   end
 
   def company_page_not_found
