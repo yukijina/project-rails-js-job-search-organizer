@@ -1,5 +1,6 @@
-<h1 class="my-5"><%= display_title(@company.name) %></h1>
+<h1 class="mt-5"><%= display_title(@company.name) %></h1>
 
+<p class="text-danger my-4"><%= flash[:message] %></p>
 <table class="table table-borderless sm-font">
   <thead class="thead-light">
     <tr>
@@ -18,7 +19,7 @@
       <td><%= number_to_currency(position.salary) %></td>
       <td><%= display_check(position.full_time) %></td>
       <td>
-        <%= button_to user_checklists_path(current_user.id), class: "btn btn-success btn-sm sm-font" do %>
+        <%= button_to user_checklists_path(current_user.id), class: "btn btn-success btn-sm sm-font", data: {confirm: "You want to add this position to your list?"} do %>
         Add to your checklist
           <input type="hidden" name="checklist[company_id]" value="<%= position.company_id %>">
           <input type="hidden" name="checklist[position_id]" value="<%= position.id %>">
