@@ -3,6 +3,7 @@
 <div class="my-5">
   <h1 class="mb-4">Welcome Back, <%= display_title(@user.username) %> !</h1>
   <p>Your email: <%= @user.email %></p>
+  <p><%= "You are logged in as Admin" if admin?(@user) %></p>
 
   <div class="mt-5">
     <%= link_to "Go to your checklist", user_checklists_path(@user), class: "btn btn-info" %>
@@ -12,8 +13,9 @@
 
 <% else %>
 <div class="mt-5">
-  <h1 class="mb-4">Welcome, <%= display_title(@user.username) %>!</h1>
+  <h1 class="mb-4">Welcome, <%= display_title(@user.username) %> !</h1>
   <p>Your email: <%= @user.email %></p>
+  <p><%= "You are logged in as Admin" if admin?(@user) %></p>
 </div>
 
 <div class="mt-5">
