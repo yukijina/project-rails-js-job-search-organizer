@@ -17,15 +17,5 @@ class User < ApplicationRecord
     end
   end
 
-  def find_positions(id)
-    self.positions.where(company_id: id)
-  end
-
-
-  # def self.sort_by_name(current_user)
-  #   find(current_user.id).companies.order(name: :asc).map do |company|
-  #     company
-  #   end
-  # end
 
 end
