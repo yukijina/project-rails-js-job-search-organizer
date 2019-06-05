@@ -1,5 +1,7 @@
-<h1 class="my-5"><%= display_title(current_user.username) %>'s Checklist</h1>
-<p class="text-danger"><%= flash[:message] %></p>
+<h1 class="mt-5"><%= display_title(current_user.username) %>'s Checklist</h1>
+
+<p class="text-danger my-4"><%= flash[:message] %></p>
+
 <% if @checklists.empty? %>
   <p class="alert alert-warning my-4">Your checklist is empty now. Please create from <%= link_to "here", new_company_path %>.</p>
 <% end %>
