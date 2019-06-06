@@ -52,7 +52,7 @@ class CompaniesController < ApplicationController
 
   private
     def company_params
-      params.require(:company).permit(:name, positions_attributes: [:title, :description, :salary, :full_time])
+      params.require(:company).permit(:name, :url, positions_attributes: [:title, :description, :salary, :full_time])
     end
 
 
