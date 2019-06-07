@@ -30,10 +30,14 @@ Make sure you have Ruby, Bundler.
 `rails db:seed`
 
 ### 5. Start the Rails server
-You can start the rails server using the command given below.
+You can start the rails server using the command given below.  
 `bundle rails s`
 
 Now you can visit the app with http://localhost:3000
+
+#### Usage of Admin
+Only admin can edit and delete a company and a position.
+If you want to try admin experience, please sign up with admin_code 007.
 
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/yukijina/project-rails-job-search-organizer. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
