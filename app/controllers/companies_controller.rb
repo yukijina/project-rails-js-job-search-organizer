@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
   before_action :require_login
 
   def index
-    @companies = Company.all
+    @companies = Company.sort_by_name
   end
 
   def show
@@ -54,6 +54,5 @@ class CompaniesController < ApplicationController
     def company_params
       params.require(:company).permit(:name, :url, positions_attributes: [:title, :description, :salary, :full_time])
     end
-
 
 end
