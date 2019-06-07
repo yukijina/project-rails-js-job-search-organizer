@@ -1,7 +1,7 @@
 <h1 class="my-5">All Comapanies</h1>
-<% if flash[:message] %>
-  <p class="alert alert-danger"><%= flash[:message] %></p>
-<% end %>
+
+<p class="text-danger"><%= flash[:message] %></p>
+
 
 <% @companies.each do |company| %>
   <div class="card w-75">
