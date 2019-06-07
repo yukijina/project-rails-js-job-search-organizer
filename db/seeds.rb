@@ -18,7 +18,7 @@ u3 = User.create(username: "Paul", email: "paul@test.com", password: "test", adm
 
 #Company
 c1 = Company.create(name: "Canvas", url: "https://drivecanvas.com/")
-c2 = Company.create(name: "OpenAI", url: "https://openai.com/")
+c2 = Company.create(name: "Yelp", url: "https://www.yelp.com/careers/job-openings")
 c3 = Company.create(name: "Apple", url: "https://www.apple.com/")
 c4 = Company.create(name: "Walmart", url: "https://www.walmart.com/")
 c5 = Company.create(name: "Open Table", url: "https://www.opentable.com/")
@@ -28,7 +28,7 @@ p1 = c1.positions.create(title: "Software Engineer", description: "You’ve got 
 p2 = c1.positions.create(title: "Product Designer", description: "Experience designing digital products and systems", salary: 125000, full_time: true)
 p3 = c1.positions.create(title: "Operations Associate", description: "Flexibility with your schedule and excellent attention to details", salary: 55000, full_time: true)
 p4 = c2.positions.create(title: "Machine Learning Engineer", description: "2+ years of ML work experience", salary: 80000, full_time: true)
-p5 = c2.positions.create(title: "IT Specialist", description: "nsuring a smooth experience for employees’ IT onboarding", salary: 60000, full_time: true)
+p5 = c2.positions.create(title: "Software Engineer(Android)", description: "Expertise in Java or other mobile languages", salary: 70000, full_time: true)
 p6 = c3.positions.create(title: "Siri Engineer", description: "3+ years of software engineering experience", salary: 80000, full_time: true)
 p7 = c3.positions.create(title: "UX/UI Design Lead", description: "at least 8+ years experience as a UX/UI designer", salary: 13000, full_time: true)
 p8 = c4.positions.create(title: "Business Development & Strategy Analyst", description: "2+ years of investment banking or management consulting experience", salary: 60000, full_time: true)
