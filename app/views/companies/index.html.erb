@@ -12,6 +12,7 @@
 
       <% if current_user.admin? %>
         <%= link_to "Edit company", edit_company_path(company), class: "btn btn-warning btn-sm" %>
+        <%= link_to "Delete company", company_path(company), method: :delete, class: "btn btn-danger btn-sm",data: {confirm: "Are you sure? You want to delete the company?"} %>
       <% end %>
     </div>
   </div>
