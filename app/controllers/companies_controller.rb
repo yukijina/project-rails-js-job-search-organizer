@@ -50,6 +50,12 @@ class CompaniesController < ApplicationController
     redirect_to company_path(company)
   end
 
+  def destroy
+    company = Company.find_by(id: params[:id])
+    company.destroy
+    redirect_to companies_path
+  end
+
   private
     def company_params
       params.require(:company).permit(:name, :url, positions_attributes: [:title, :description, :salary, :full_time])

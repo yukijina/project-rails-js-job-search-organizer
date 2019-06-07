@@ -46,6 +46,13 @@ class PositionsController < ApplicationController
     end
   end
 
+  def destroy
+    position = Position.find_by(id: params[:id])
+    company = position.company
+    position.destroy
+    redirect_to company_positions_path(company)
+  end
+
   private
     def position_params
       params.require(:position).permit(:title, :description, :salary, :full_time, :company_id)
