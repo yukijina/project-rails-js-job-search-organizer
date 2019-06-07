@@ -4,7 +4,7 @@
 <% if @user.errors.any? %>
   <div class="error_explanation">
     <% @user.errors.full_messages.each do |message| %>
-        <h4><%= message %></h4>
+        <p class="text-danger"><%= message %></p>
     <% end %>
   </div>
 <% end %>
