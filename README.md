@@ -1,10 +1,10 @@
 # Job Search Organizer
 
-This is Flatiron School Ruby on Rails project.
+Flatiron School Ruby on Rails project.
 
 ## About this project
 User can signup, log in and log out. User can also log in through third party log in(Google).
-User can track their job search progress in their own checklist.
+User can track their job application process in their own checklists.
 User can create a company and position, however only admin can edit after they are created.
 
 
@@ -31,12 +31,12 @@ Make sure you have Ruby, Bundler.
 
 ### 5. Start the Rails server
 You can start the rails server using the command given below.  
-`bundle rails s`
+`rails s`
 
 Now you can visit the app with http://localhost:3000
 
-#### Usage of Admin
-Only admin can edit and delete a company and a position.
+#### Sing up as Admin
+Only admin can edit a company and a position.
 If you want to try admin experience, please sign up with admin_code 007.
 
 ## Contributing
