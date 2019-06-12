@@ -15,6 +15,7 @@ Position.destroy_all
 u1 = User.create(username: "Peach", email: "peach@test.com", password: "test", admin: true, admin_code: 007)
 u2 = User.create(username: "Julie", email: "julie@test.com", password: "test", admin: false, admin_code: 999)
 u3 = User.create(username: "Paul", email: "paul@test.com", password: "test", admin: false, admin_code: 999)
+u4 = User.create(username: "Sara", email: "sara@test.com", password: "test", admin: false, admin_code: 999)
 
 #Company
 c1 = Company.create(name: "Canvas", url: "https://drivecanvas.com/")
@@ -22,6 +23,8 @@ c2 = Company.create(name: "Yelp", url: "https://www.yelp.com/careers/job-opening
 c3 = Company.create(name: "Apple", url: "https://www.apple.com/")
 c4 = Company.create(name: "Walmart", url: "https://www.walmart.com/")
 c5 = Company.create(name: "Open Table", url: "https://www.opentable.com/")
+c6 = Company.create(name: "Uber", url: "https://www.uber.com/us/en/careers/")
+c7 = Company.create(name: "Tesla", url: "https://www.tesla.com/careers")
 
 #Position
 p1 = c1.positions.create(title: "Software Engineer", description: "You’ve got 5+ years of experience writing backend code", salary: 125000, full_time: true)
@@ -35,3 +38,9 @@ p8 = c4.positions.create(title: "Business Development & Strategy Analyst", descr
 p9 = c4.positions.create(title: "Executive Assistant", description: "Supports operations of assigned area", salary: 30000, full_time: false)
 p10 = c5.positions.create(title: "Android Engineering Manager", description: "Lead a multi-talented team of Android engineers", salary: 80000, full_time: true)
 p11 = c5.positions.create(title: "Software Engineer", description: "5+ years in software engineering", salary: 50000, full_time: false)
+p12 = c6.positions.create(title: "Program Manager", description: "Minimum of 5 years hands-on experience project managing", salary: 80000, full_time: true)
+p12 = c6.positions.create(title: "Frontend Engineer", description: "Deep understanding of UI framework and choices and experience", salary: 70000, full_time: true)
+p13 = c6.positions.create(title: "Hardware Technical Program Manager", description: "Minimum of 7 years experience as a program / project manager driving Hardware ", salary: 90000, full_time: true)
+p14 = c7.positions.create(title: "Intern Material Engineering", description: "Fundamental knowledge of materials science and physical metallurgy is required.", salary: 30000, full_time: false)
+p15 = c7.positions.create(title: "Full Stack Developer", description: "Collaborate with a dynamic team utilizing technologies ranging from React and Python", salary: 70000, full_time: true)
+p16 = c7.positions.create(title: "Product Security Engineer", description: "Security expertise in one or more of: C, C++, x86, ARM, CAN.", salary: 70000, full_time: true)
