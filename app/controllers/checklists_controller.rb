@@ -22,15 +22,18 @@ class ChecklistsController < ApplicationController
 
   def edit
     @user = User.find_by(id: params[:user_id])
-    @checklist = Checklist.find_by(id: params[:id])
+    if @user.id == session[:user_id]
+      @checklist = Checklist.find_by(id: params[:id])
+    else
+      page_not_found
+    end
   end
 
   def update
-    if params[:user_id]
-      checklist = Checklist.find_by(id: params[:id])
-      checklist.update(checklist_params)
-      redirect_to user_checklists_path(current_user)
-    end
+    #params[:user_id]
+    checklist = Checklist.find_by(id: params[:id])
+    checklist.update(checklist_params)
+    redirect_to user_checklists_path(current_user)
   end
 
   def destroy
