@@ -9,11 +9,14 @@ User can create a company and position, however only admin can edit after they a
 
 
 ### Ruby version
-- Ruby 2.3.3
+- Ruby 2.5.3
 - Rails 5.2.3
 
 ## Running Locally
 Make sure you have Ruby, Bundler.
+
+## Try this app through Heroku
+visit: https://rails-job-search-organizer.herokuapp.com/
 
 ## Usage
 ### 1. Check out the repository
