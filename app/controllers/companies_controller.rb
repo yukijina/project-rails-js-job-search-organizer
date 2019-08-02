@@ -3,6 +3,10 @@ class CompaniesController < ApplicationController
 
   def index
     @companies = Company.sort_by_name
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @companies }
+    end
   end
 
   def show
