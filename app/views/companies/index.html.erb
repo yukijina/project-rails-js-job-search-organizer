@@ -2,23 +2,28 @@
 
 <p class="text-danger"><%= flash[:message] %></p>
 
+<div class="card w-75" id="companies-wrapper">
+  <!-- render via JS -->
+</div>
 
-<% @companies.each do |company| %>
+<hr>
+<!--
+<%# @companies.each do |company| %>
   <div class="card w-75">
     <div class="card-body">
-      <h5 class="card-title"><%= display_title(company.name) %></h5>
-      <p class="card-text">Website: <%= link_to company.url, "#{company.url}", target: "_blank" %></p>
-      <p><%= company.description %></p>
-      <p>&#9829; <%= company.checklists.size %> user's checklists</p>
-      <%= link_to "Check positions", company_positions_path(company), class: "btn btn-info btn-sm" %>
+      <h5 class="card-title"><%#= display_title(company.name) %></h5>
+      <p class="card-text">Website: <%#= link_to company.url, "#{company.url}", target: "_blank" %></p>
+      <p><%#@= company.description %></p>
+      <p>&#9829; <%#= company.checklists.size %> user's checklists</p>
+      <%#= link_to "Check positions", company_positions_path(company), class: "btn btn-info btn-sm" %>
 
-      <% if current_user.admin? %>
-        <%= link_to "Edit company", edit_company_path(company), class: "btn btn-warning btn-sm" %>
-      <% end %>
+      <%# if current_user.admin? %>
+        <%#= link_to "Edit company", edit_company_path(company), class: "btn btn-warning btn-sm" %>
+      <%# end %>
     </div>
   </div>
-<% end %>
-
+<%# end %>
+-->
 <div class="my-5">
   <%= link_to 'Back', url_for(:back) %>
 </div>
