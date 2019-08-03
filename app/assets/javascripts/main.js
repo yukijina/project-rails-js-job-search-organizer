@@ -2,7 +2,9 @@ $(function() {
   console.log("Loading..!")
   if (window.location.pathname === "/companies") {
     listeningCompaniesLoad()
-  } else if (/\d/.test(window.location.pathname)) {
+  } else if (window.location.pathname.includes("/users")) {
+    displayChecklist();
+  } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname)) {
     displayCompanyShow();
   }
 })
