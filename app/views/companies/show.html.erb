@@ -1,1 +1,16 @@
-<h1>Comapny's show page</h1>
+<h1 class="mt-5"><%= @company.name %></h1>
+<p>Current opening positions: </p>
+<div class="mt-5" id="positions-wrapper" data-id="<%= @company.id %>">
+    <!-- Rendered via JS -->
+</div>
+
+<!-- <div class="mt-5">
+  <%#= link_to "Go to yourP checklist", user_checklists_path(current_user), class: "btn btn-info" %>
+  <%# if current_user.admin? %>
+    <%#= link_to "Edit this position? ", edit_company_position_path(@position.company, @position), class: "btn btn-warning" %>
+  <%# end %>
+</div> -->
+
+<div class="my-5">
+  <%= link_to 'Back', url_for(:back) %>
+</div>
