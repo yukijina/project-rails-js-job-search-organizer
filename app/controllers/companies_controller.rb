@@ -14,7 +14,11 @@ class CompaniesController < ApplicationController
     if @company.nil?
       company_page_not_found
     else
-      redirect_to company_positions_path(@company)
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @company }
+      end
+      #redirect_to company_positions_path(@company)
     end
   end
 
