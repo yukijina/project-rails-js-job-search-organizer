@@ -34,7 +34,11 @@ class PositionsController < ApplicationController
 
   def show
     @position = Position.find_by(id: params[:id])
-    company_page_not_found if @position.nil?
+    #company_page_not_found if @position.nil?
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @position }
+    end
   end
 
   def edit
