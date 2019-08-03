@@ -7,6 +7,10 @@ class PositionsController < ApplicationController
       company_page_not_found
     else
       @positions = @company.positions
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render json: @positions}
+      end
     end
   end
 
