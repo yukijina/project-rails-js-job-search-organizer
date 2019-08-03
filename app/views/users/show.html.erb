@@ -8,7 +8,7 @@
   <p><%= "You are logged in as Admin" if admin?(@user) %></p>
 
   <div class="mt-5">
-    <%= link_to "Go to your checklist", user_checklists_path(@user), class: "btn btn-info" %>
+    <%= link_to "Check your checklist", "#",id: "js-display-checklist", class: "btn btn-info" %>
     <%= link_to "or Create a new list", new_company_path, class: "btn btn-outline-info" %>
   </div>
 </div>
