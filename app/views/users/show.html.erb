@@ -6,9 +6,11 @@
   <h1 class="mb-4">Welcome Back, <%= display_title(@user.username) %> !</h1>
   <p>Your email: <%= @user.email %></p>
   <p><%= "You are logged in as Admin" if admin?(@user) %></p>
+  <div id="display-checklist" data-id="<%= @user.id %>">
 
+  </div>
   <div class="mt-5">
-    <%= link_to "Check your checklist", "#",id: "js-display-checklist", class: "btn btn-info" %>
+    <%= link_to "Check your checklist", "#",id: "js-display-checklist", class: "btn btn-info", :data => {:id => @user.id} %>
     <%= link_to "or Create a new list", new_company_path, class: "btn btn-outline-info" %>
   </div>
 </div>
