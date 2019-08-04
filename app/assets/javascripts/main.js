@@ -10,7 +10,7 @@ $(function() {
     //clickToPosition();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname)) {
     displayPositionShow()
-  } else if (window.location.pathname.includes("/companies/new")) {
+  } else if (window.location.pathname.includes("/positions/new")) {
     postCompanyandPosition()
   }
 })
@@ -167,9 +167,10 @@ function postCompanyandPosition() {
     e.preventDefault();
     const values = $(this).serialize();
     console.log(values)
-    const posting = $.post('/companies', values)
-    posting.done(function(Data) {
-      console.log(Data)
+    $.post('/positions', values)
+    .done(function(data) {
+        alert("Successfuly created!")
+        window.location.replace(`/companies/${data.company.id}/positions/${data.id}`)
     })
   })
 }
