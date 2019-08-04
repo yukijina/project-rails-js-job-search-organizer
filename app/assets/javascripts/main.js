@@ -10,6 +10,8 @@ $(function() {
     //clickToPosition();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname)) {
     displayPositionShow()
+  } else if (window.location.pathname.includes("/companies/new")) {
+    postCompanyandPosition()
   }
 })
 
@@ -156,6 +158,19 @@ function displayCompanyShow() {
         positionsWrapper.innerHTML += position.positionFormatHTML();
         positionDetails();
       })
+  })
+}
+
+//Company New page. Post data.
+function postCompanyandPosition() {
+  $("form").submit(function(e) {
+    e.preventDefault();
+    const values = $(this).serialize();
+    console.log(values)
+    const posting = $.post('/companies', values)
+    posting.done(function(Data) {
+      console.log(Data)
+    })
   })
 }
 
