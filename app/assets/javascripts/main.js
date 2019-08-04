@@ -144,8 +144,9 @@ function positionDetails() {
 
 // Company Show Page
 function displayCompanyShow() {
-    console.log("Now company show")
-    let companyWrapper = document.getElementById("company-wrapper");
+  console.log("Now company show")
+  let companyWrapper = document.getElementById("company-wrapper");
+  if (companyWrapper !== null) {
     let positionsWrapper = document.getElementById("positions-wrapper");
     const id = positionsWrapper.dataset.id;
 
@@ -158,7 +159,10 @@ function displayCompanyShow() {
         positionsWrapper.innerHTML += position.positionFormatHTML();
         positionDetails();
       })
-  })
+    })
+  } else {
+    return;
+  }
 }
 
 //Company New page. Post data.
