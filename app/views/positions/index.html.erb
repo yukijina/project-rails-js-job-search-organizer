@@ -14,9 +14,9 @@
   <tbody>
     <% @positions.each do |position| %>
       <tr>
-      <td><%= position.title %></td>
+      <td><%= link_to position.title, company_position_path(@company, position) %></td>
       <td><%= position.description %></td>
-      <td><%= number_to_currency(position.salary) %></td>
+      <td><%= display_salary(position.salary) %></td>
       <td><%= display_check(position.full_time) %></td>
       <td>
         <%= button_to user_checklists_path(current_user.id), class: "btn btn-success btn-sm sm-font", data: {confirm: "You want to add this position to your list?"} do %>

@@ -1,21 +1,19 @@
-<h2 class="mt-5"><%= display_title(@position.title) %>
-  <span class="text-sm">at <%= display_title(@position.company.name) %></span>
-</h2>
+<h2 class="mt-5"><%= display_title(@position.title) %></h2>
+<p><%= link_to display_title(@position.company.name), company_positions_path(@position.company) %></p>
 
 <div class="mt-5">
   <h4>Job Desciption</h4>
   <p><%= @position.description %></>
 
   <h4>Salary</h4>
-  <p><%= number_to_currency(@position.salary) %> a year</p>
+  <p><%= display_salary(@position.salary) %></p>
+  <h4>Job Type</h4>
+  <p><%= display_job_type(@position.full_time) %></p>
 
-  <h4>Full time position</h4>
-  <p><%= display_check(@position.full_time) %></p>
-
-  <h4>Created at</h4>
+  <h4>Position created at</h4>
   <p><%= display_time(@position.created_at) %></p>
 
-  <h4>Updated at</h4>
+  <h4>Position updated at</h4>
   <p><%= display_time(@position.updated_at) %></p>
 
 </div>
