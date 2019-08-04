@@ -54,7 +54,11 @@ class PositionsController < ApplicationController
 
   def update
     @position = Position.find_by(id: params[:id])
-    if @position.update(position_params)
+    if params[:position][:company_attributes][:name].empty?
+       @position.update(title: params[:position][:title], description:  params[:position][:description], salary:  params[:position][:salary], full_time:  params[:position][:full_time], company_id: params[:position][:company_id])
+      redirect_to company_position_path(@position.company, @position)
+    elsif !params[:position][:company_attributes][:name].empty?
+      @position.update(position_params)
       redirect_to company_position_path(@position.company, @position)
     else
       render :edit
