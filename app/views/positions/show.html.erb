@@ -1,35 +1,23 @@
-<h1 class="mt-5"><%= display_title(@position.title) %></h1>
-<h3>at <%= display_title(@position.company.name) %></h3>
+<h2 class="mt-5"><%= display_title(@position.title) %>
+  <span class="text-sm">at <%= display_title(@position.company.name) %></span>
+</h2>
 
 <div class="mt-5">
-<table class="table table-borderless">
-  <tbody>
-    <tr>
-      <th scope="row">Job Desciption</th>
-        <td><%= @position.description %></td>
-    </tr>
+  <h4>Job Desciption</h4>
+  <p><%= @position.description %></>
 
-    <tr>
-      <th scope="row">Salary</th>
-      <td><%= number_to_currency(@position.salary) %> a year</td>
-    </tr>
+  <h4>Salary</h4>
+  <p><%= number_to_currency(@position.salary) %> a year</p>
 
-    <tr>
-      <th scope="row">Full time position</th>
-      <td><%= display_check(@position.full_time) %></td>
-    </tr>
+  <h4>Full time position</h4>
+  <p><%= display_check(@position.full_time) %></p>
 
-    <tr>
-      <th scope="row">Created at</th>
-      <td><%= display_time(@position.created_at) %></td>
-    </tr>
+  <h4>Created at</h4>
+  <p><%= display_time(@position.created_at) %></p>
 
-    <tr>
-      <th scope="row">Updated at</th>
-      <td><%= display_time(@position.updated_at) %></td>
-    </tr>
-  </tbody>
-</table>
+  <h4>Updated at</h4>
+  <p><%= display_time(@position.updated_at) %></p>
+
 </div>
 
 <div class="mt-5">
