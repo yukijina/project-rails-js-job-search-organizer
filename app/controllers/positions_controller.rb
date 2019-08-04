@@ -21,8 +21,6 @@ class PositionsController < ApplicationController
   end
 
   def new
-    # @company = Company.find_by(id: params[:company_id])
-    # @position = @company.positions.build
     @position = Position.new
   end
 
@@ -34,21 +32,11 @@ class PositionsController < ApplicationController
     end
 
     if @position.save
-      redirect_to company_positions_path(@position.company)
+      render json: @position, status: 201
+      #redirect_to company_positions_path(@position.company)
     else
       render :new
     end
-
-    # if @company = Company.find_by(id: params[:company_id])
-    #   @position = @company.positions.build(position_params)
-    #
-    #   if @company && @position.save
-    #     current_user.checklists.create(company_id: @company.id, position_id: @position.id)
-    #     redirect_to company_position_path(@company, @position)
-    #   else
-    #     render :new
-    #   end
-    # end
   end
 
   def show
