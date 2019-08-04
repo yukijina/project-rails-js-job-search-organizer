@@ -5,33 +5,50 @@ class PositionsController < ApplicationController
     @company = Company.find_by(id: params[:company_id])
     @positions = @company.positions if @company
     @allpositions = Position.all
-    # if @company.nil?
-    #   company_page_not_found
-    # else
-    #@positions = @company.positions
+    if @company.nil?
       respond_to do |format|
-        format.html { render :index }
+        #need to create all positions page
+        format.html { render :index}
         format.json { render json: @allpositions}
       end
-    #end
+    else
+    @positions = @company.positions
+      respond_to do |format|
+        format.html { render :index}
+        format.json { render json: @positions}
+      end
+    end
   end
 
   def new
-    @company = Company.find_by(id: params[:company_id])
-    @position = @company.positions.build
+    # @company = Company.find_by(id: params[:company_id])
+    # @position = @company.positions.build
+    @position = Position.new
   end
 
   def create
-    if @company = Company.find_by(id: params[:company_id])
-      @position = @company.positions.build(position_params)
+    @position = Position.new(position_params)
 
-      if @company && @position.save
-        current_user.checklists.create(company_id: @company.id, position_id: @position.id)
-        redirect_to company_position_path(@company, @position)
-      else
-        render :new
-      end
+    if params[:position][:company_id]
+      @position.company_id = params[:position][:company_id]
     end
+
+    if @position.save
+      redirect_to company_positions_path(@position.company)
+    else
+      render :new
+    end
+
+    # if @company = Company.find_by(id: params[:company_id])
+    #   @position = @company.positions.build(position_params)
+    #
+    #   if @company && @position.save
+    #     current_user.checklists.create(company_id: @company.id, position_id: @position.id)
+    #     redirect_to company_position_path(@company, @position)
+    #   else
+    #     render :new
+    #   end
+    # end
   end
 
   def show
@@ -58,7 +75,7 @@ class PositionsController < ApplicationController
 
   private
     def position_params
-      params.require(:position).permit(:title, :description, :salary, :full_time, :company_id)
+      params.require(:position).permit(:title, :description, :salary, :full_time, :company_id, :company_attributes => [:name, :url, :description])
     end
 
 end
