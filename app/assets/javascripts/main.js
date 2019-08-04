@@ -7,7 +7,7 @@ $(function() {
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && !window.location.pathname.includes("/positions")) {
     displayCompanyShow();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions")) {
-    clickToPosition();
+    //clickToPosition();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname)) {
     displayPositionShow()
   }
@@ -33,6 +33,12 @@ class Company {
     </div>
     `
   }
+  showHTML() {
+    return `
+    <a href="${this.url}" class="card-text" target="_blank"><i class="fas fa-globe"></i> Website</a>
+    <p class="card-text js-description-${this.id}">${this.description}</p>
+    `
+  }
 }
 // <a href="/companies/${this.id}" class="js-positions btn btn-info btn-sm" data-id="${this.id}">Check Positions</a>
 
@@ -42,7 +48,7 @@ class Position {
     this.title = data.title;
     this.description = data.description;
     this.salary = data.salary === 0 ? "n/a" : `$${data.salary}`;
-    this.fullTime = data.full_time;
+    this.fullTime = data.full_time === true ? "Yes" : "n/a" ;
     this.created = data.created_at.slice(0,10);
     this.updated = data.updated_at.slice(0,10);
     this.companyId = data.company_id;
@@ -63,6 +69,7 @@ class Position {
     return `
       <h2>${this.title}</h2>
       <p>Description: ${this.description}</p>
+      <p>Salary: ${this.salary} a year</p>
       <p>Full Time: ${this.fullTime}</p>
       <p>Position Created: ${this.created}</p>
       <p>Updated: ${this.updated}</p>
@@ -136,10 +143,14 @@ function positionDetails() {
 // Company Show Page
 function displayCompanyShow() {
     console.log("Now company show")
-    let positionsWrapper = document.getElementById("positions-wrapper")
+    let companyWrapper = document.getElementById("company-wrapper");
+    let positionsWrapper = document.getElementById("positions-wrapper");
     const id = positionsWrapper.dataset.id;
+
     $.get("/companies/" + id + ".json", function(res) {
       const company = new Company(res)
+      companyWrapper.innerHTML += company.showHTML();
+
       res.positions.forEach(function(positionData) {
         let position = new Position(positionData)
         positionsWrapper.innerHTML += position.positionFormatHTML();
@@ -150,13 +161,13 @@ function displayCompanyShow() {
 
 
 // Not sure where
-function clickToPosition() {
-  $(".js-to-position").on("click", function(e) {
-    e.preventDefault();
-    const positionId = this.dataset.positionid;
-    const companyId = this.dataset.companyid;
-    $.get("/companies/" + companyId + "/positions/" + positionId + ".json", function(res) {
-      window.location.replace(`/companies/${companyId}/positions/${positionId}`);
-    })
-  })
-}
+// function clickToPosition() {
+//   $(".js-to-position").on("click", function(e) {
+//     e.preventDefault();
+//     const positionId = this.dataset.positionid;
+//     const companyId = this.dataset.companyid;
+//     $.get("/companies/" + companyId + "/positions/" + positionId + ".json", function(res) {
+//       window.location.replace(`/companies/${companyId}/positions/${positionId}`);
+//     })
+//   })
+// }
