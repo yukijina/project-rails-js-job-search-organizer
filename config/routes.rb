@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :companies
   resources :users, only: [:new, :create, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   resources :companies, only: [:show] do
     resources :positions
   end
@@ -20,6 +19,8 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#googleAuth'
   #get 'auth/failure', to: redirect('/')
 
-  get '*path' => redirect('/')
+  #get '*path' => redirect('/')
+
+
 
 end
