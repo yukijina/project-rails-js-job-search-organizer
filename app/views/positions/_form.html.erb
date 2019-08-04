@@ -16,7 +16,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label "Brief description" %><br>
+    <%= f.label "Description" %><br>
     <%= f.text_field :description, class: "form-control" %>
   </div>
 
@@ -28,6 +28,33 @@
   <div class="form-group">
     <%= f.label :full_time %>
     <%= f.check_box :full_time %>
+  </div>
+
+  <p>Choose Company or Create:</p>
+  <p>Select a Company</p>
+    <%= f.hidden_field :position_id, value: @position.id %>
+    <%= f.collection_select :company_id, Company.all, :id, :name, {prompt: "Select"} %>
+
+<br>
+<br>
+<!-- this btn is not yet assigned to js -->
+  <a href="#" id="js-create-company-btn">Or Create a new Company</a>
+  <div id="js-new-company">
+  <!-- <div id="js-new-company" style="display:none;"> -->
+    <%= f.fields_for :company, @position.build_company do |company_f| %>
+    <div>
+      <%= company_f.label :name %>
+      <%= company_f.text_field :name %>
+    </div>
+    <div>
+      <%= company_f.label :url %>
+      <%= company_f.text_field :url %>
+    </div>
+    <div>
+      <%= company_f.label :description %>
+      <%= company_f.text_field :description %>
+    </div>
+    <% end %>
   </div>
 
   <%= f.submit class: "btn btn-info mt-5" %>
