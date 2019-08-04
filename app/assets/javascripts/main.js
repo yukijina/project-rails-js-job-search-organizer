@@ -5,7 +5,7 @@ $(function() {
   } else if (window.location.pathname.includes("/users")) {
     clickChecklistBtn();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && !window.location.pathname.includes("/positions")) {
-    //displayCompanyShow();
+    displayCompanyShow();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions")) {
     clickToPosition();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname)) {
@@ -134,21 +134,19 @@ function positionDetails() {
 }
 
 // Company Show Page
-// function displayCompanyShow() {
-//     console.log("Now show")
-//     let positionsWrapper = document.getElementById("positions-wrapper")
-//     const id = positionsWrapper.dataset.id;
-//     $.get("/companies/" + id + ".json", function(res) {
-//       const company = new Company(res)
-//       res.positions.forEach(function(positionData) {
-//         let position = new Position(positionData)
-//         positionsWrapper.innerHTML += position.positionFormatHTML();
-//         positionDetails();
-//       })
-//   })
-// }
-
-
+function displayCompanyShow() {
+    console.log("Now company show")
+    let positionsWrapper = document.getElementById("positions-wrapper")
+    const id = positionsWrapper.dataset.id;
+    $.get("/companies/" + id + ".json", function(res) {
+      const company = new Company(res)
+      res.positions.forEach(function(positionData) {
+        let position = new Position(positionData)
+        positionsWrapper.innerHTML += position.positionFormatHTML();
+        positionDetails();
+      })
+  })
+}
 
 
 // Not sure where
