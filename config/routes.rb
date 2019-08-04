@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :companies, only: [:show] do
-    resources :positions
+    resources :positions, only: [:show, :index]
   end
 
   resources :users, only: [:show] do
@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   #get 'auth/failure', to: redirect('/')
 
   #get '*path' => redirect('/')
-  resources :positions, only: [:index]
+  resources :positions
 
 end
