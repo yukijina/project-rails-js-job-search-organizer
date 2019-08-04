@@ -41,19 +41,19 @@ class Position {
     this.id = data.id;
     this.title = data.title;
     this.description = data.description;
-    this.salary = data.salary;
+    this.salary = data.salary === 0 ? "n/a" : `$${data.salary}`;
     this.fullTime = data.full_time;
-    this.created = data.created_at;
-    this.updated = data.updated_at;
+    this.created = data.created_at.slice(0,10);
+    this.updated = data.updated_at.slice(0,10);
     this.companyId = data.company_id;
   }
   positionFormatHTML() {
     return `
-      <div id="position-wrapper-${this.id}">
+      <div id="position-wrapper-${this.id}" class="mb-4">
         <h2>${this.title}</h2>
         <p>${this.description.substring(0, 20)}...</p>
         <p>Salary: ${this.salary} a year</p>
-        <button class="js-position btn btn-info btn-sm" data-id="${this.id}" data-companyid="${this.companyId}">More info</button>
+        <button class="js-position btn btn-outline-info btn-sm" data-id="${this.id}" data-companyid="${this.companyId}">More info</button>
       </div>
     `
   }
