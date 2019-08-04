@@ -22,27 +22,6 @@ class CompaniesController < ApplicationController
     end
   end
 
-  def new
-    @company = Company.new
-    @company.positions.build
-  end
-
-  def create
-    if params[:company][:id]
-      @company = Company.find_by(id: params[:company][:id])
-      redirect_to new_company_position_path(@company)
-    else
-      @company = Company.new(company_params)
-      @position = @company.positions.last
-      if @company.save
-        current_user.checklists.create(company_id: @company.id, position_id: @position.id)
-        redirect_to company_position_path(@company, @position)
-      else
-        render "new"
-      end
-    end
-  end
-
   def edit
     if current_user.admin?
       @company = Company.find_by(id: params[:id])
