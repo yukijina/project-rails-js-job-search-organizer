@@ -3,7 +3,7 @@
 <p class="text-danger my-4"><%= flash[:message] %></p>
 
 <% if @checklists.empty? %>
-  <p class="alert alert-warning my-4">Your checklist is empty now. Please create from <%= link_to "here", new_company_path %>.</p>
+  <p class="alert alert-warning my-4">Your checklist is empty now. <%= link_to "Find positions", positions_path, class: "btn btn-warning btn-sm" %></p>
 <% end %>
 
 <table class="table table-borderless sm-font">
@@ -41,6 +41,6 @@
 </table>
 
 <div class="mt-5">
-  <%= link_to "Create a new position", new_position_path, class: "btn btn-info" %>
+  <%= link_to "Check all positions", positions_path, class: "btn btn-info" %>
   <%= link_to "Check all companies", companies_path, class: "btn btn-info" %>
 </div>
