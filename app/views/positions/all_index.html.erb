@@ -20,7 +20,7 @@
       <tr>
       <td><%= link_to position.title, company_position_path(position.company, position) %></td>
       <td><%= link_to position.company.name, company_path(position.company) %></td>
-      <td><%= position.description %></td>
+      <td><%= link_to (truncate position.description), "#", class: "js-truncate link-#{position.id}", data: {id: position.id, companyid: position.company_id} %></td>
       <td><%= display_salary(position.salary) %></td>
       <td><%= display_check(position.full_time) %></td>
       <td>
