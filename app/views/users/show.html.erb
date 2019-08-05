@@ -3,27 +3,24 @@
 
 <% if !@user.checklists.empty? %>
 <div class="my-5">
-  <h1 class="mb-4">Welcome Back, <%= display_title(@user.username) %> !</h1>
-  <p>Your email: <%= @user.email %></p>
-  <p><%= "You are logged in as Admin" if admin?(@user) %></p>
-  <div id="display-checklist" data-id="<%= @user.id %>">
+  <h2 class="mb-4"><%= display_title(@user.username) %>'s Profile</h2>
+  <p>Email: <%= @user.email %><%= " / Status: Admin" if admin?(@user) %></p>
 
-  </div>
+  <p>You have &#9733; <%= @user.checklists.size %> positions in you checklist.</p>
+
   <div class="mt-5">
-    <%= link_to "Check your checklist", "#",id: "js-display-checklist", class: "btn btn-info", :data => {:id => @user.id} %>
-    <%= link_to "or Create a new list", new_company_path, class: "btn btn-outline-info" %>
+    <%= link_to "Go to my checklist", user_checklists_path(@user), class: "btn btn-info" %>
   </div>
 </div>
 
 <% else %>
 <div class="mt-5">
-  <h1 class="mb-4">Welcome, <%= display_title(@user.username) %> !</h1>
-  <p>Your email: <%= @user.email %></p>
-  <p><%= "You are logged in as Admin" if admin?(@user) %></p>
+  <h2 class="mb-4">Hello, <%= display_title(@user.username) %>!</h2>
+  <p>Email: <%= @user.email %> <%= " / Status: Admin" if admin?(@user) %></p>
 </div>
 
 <div class="mt-5">
-  <h2>How to use Job Search Organizer?</h2>
+  <h3>How to use Job Search Organizer?</h3>
 </div>
 <div class="mt-4">
   <h5>First step: </h5>
@@ -32,11 +29,11 @@
 
 <div class="mt-4">
   <h5>Second step:</h5>
-  <p>Update your checklist. You can add progress (resume, interview, completed) and a brief note.</p>
+  <p>Update your checklist. You can add progress (resume, interview, completed and note).</p>
 </div>
 
 <div class="mt-5">
-  <%= link_to "Let's get started", new_company_path, class: "btn btn-info" %>
-  <%= link_to "Or check a company who is hiring now", companies_path, class: "btn btn-outline-info" %>
+  <%= link_to "Check companies who are hiring now", companies_path, class: "btn btn-outline-info" %>
+  <%= link_to "Or check open positions", positions_path, class: "btn btn-outline-info" %>
 </div>
 <% end %>
