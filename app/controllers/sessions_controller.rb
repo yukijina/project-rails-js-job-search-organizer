@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     @user = User.new
     if logged_in?
       flash[:message] = "You are alrady logged in"
-      redirect_to user_path(current_user)
+      redirect_to user_path(@user)
     else
       render 'login'
     end
