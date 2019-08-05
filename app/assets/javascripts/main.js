@@ -5,7 +5,7 @@ $(function() {
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && !window.location.pathname.includes("/positions")) {
     displayCompanyShow();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions")) {
-    //clickToPosition();
+    diplayWholeDescription();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname)) {
     displayPositionShow()
   } else if (window.location.pathname.includes("/positions/new")) {
@@ -186,6 +186,19 @@ function diplayCompanyForm() {
     } else {
       div.style.display = "none"
     }
+  })
+}
+
+function diplayWholeDescription() {
+  console.log("change descriptin")
+  $(".js-truncate").on("click", function(e) {
+    e.preventDefault();
+    let positionId = this.dataset.id;
+    let companyId = this.dataset.companyid;
+    $.get("/companies/" + companyId + "/positions/" + positionId + ".json", function(res) {
+      let link = document.getElementsByClassName(`link-${positionId}`)[0];
+      link.innerText = new Position(res).description;
+    })
   })
 }
 
