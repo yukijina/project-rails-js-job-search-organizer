@@ -15,7 +15,7 @@ class PositionsController < ApplicationController
   end
 
   def all_index
-    @positions = Position.all
+    @positions = Position.sort_by_title
     respond_to do |format|
       format.html { render :all_index }
       format.json { render json: @positions }
