@@ -12,7 +12,7 @@ $(function() {
     displayPositionShow()
   } else if (window.location.pathname.includes("/positions/new")) {
     postCompanyandPosition()
-  }
+  } 
 })
 
 class Company {
@@ -42,7 +42,6 @@ class Company {
     `
   }
 }
-// <a href="/companies/${this.id}" class="js-positions btn btn-info btn-sm" data-id="${this.id}">Check Positions</a>
 
 class Position {
   constructor(data) {
@@ -115,13 +114,13 @@ function displayPositions() {
         return new Position(position).positionFormatHTML()
       }).join("")
       const div = document.querySelector(`.append-positions-${companyId}`)
-      div.innerHTML = positions
-      if (div.style.display === "none") {
-        div.style.display = "block"
-      } else {
-        div.style.display = "none"
-      }
-      positionDetails()
+        div.innerHTML = positions
+        if (div.style.display === "none") {
+          div.style.display = "block"
+        } else {
+          div.style.display = "none"
+        }
+        positionDetails()
     })
   })
 }
@@ -179,15 +178,18 @@ function postCompanyandPosition() {
   })
 }
 
-
-// Not sure where
-// function clickToPosition() {
-//   $(".js-to-position").on("click", function(e) {
-//     e.preventDefault();
-//     const positionId = this.dataset.positionid;
-//     const companyId = this.dataset.companyid;
-//     $.get("/companies/" + companyId + "/positions/" + positionId + ".json", function(res) {
-//       window.location.replace(`/companies/${companyId}/positions/${positionId}`);
+// Render via Ruby
+// function listeningPositionsLoad() {
+//   console.log("loading all the positions!")
+//   $.get("/positions" + ".json", function(res) {
+//     const div = document.getElementById("all-positions");
+//     res.forEach(function(positionData) {
+//
+//       let position = new Position(positionData)
+//       let companyName = new Company(positionData.company)
+//       let text = companyName.name
+//       div.innerHTML += text + position.positionFormatHTML();
+//       positionDetails()
 //     })
 //   })
 // }
