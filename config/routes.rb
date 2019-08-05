@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   #get 'auth/failure', to: redirect('/')
 
   #get '*path' => redirect('/')
-  resources :positions, only: [:index, :new, :create]
-
+  resources :positions, only: [:new, :create]
+  get '/positions', to: 'positions#all_index'
 end
