@@ -5,4 +5,8 @@ class Position < ApplicationRecord
 
   validates :title, :description, :salary, presence: true
 
+  def self.sort_by_title
+    order('LOWER(title)')
+  end
+
 end
