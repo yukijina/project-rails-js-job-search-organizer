@@ -12,52 +12,56 @@
 
   <div class="form-group">
     <%= f.label :title %><br>
-    <%= f.text_field :title, class: "form-control" %>
+    <%= f.text_field :title, class: "form-control w-50" %>
   </div>
 
   <div class="form-group">
     <%= f.label "Description" %><br>
-    <%= f.text_field :description, class: "form-control" %>
+    <%= f.text_area :description, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :salary %><br>
-    <%= f.number_field :salary, class: "form-control" %>
+    <%= f.label "Annual Salary" %><br>
+    <%= f.number_field :salary, class: "form-control w-25" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :full_time %>
+    <%= f.label "Is this a full time position?" %>
     <%= f.check_box :full_time %>
   </div>
 
-  <p>Choose Company or Create:</p>
-  <p>Select a Company</p>
-    <%= f.hidden_field :position_id, value: @position.id %>
-    <%= f.collection_select :company_id, Company.all, :id, :name, {prompt: "Select"} %>
+  <h5>CHOOSE OR CREATE A COMPANY FOR THIS POSITION:</h5>
 
+  <label>Select a Company</label>
+    <%= f.hidden_field :position_id, value: @position.id %>
+    <%= f.collection_select :company_id, Company.all, :id, :name, {prompt: "Select"}, class: "form-control my-1 w-25" %>
 <br>
-<br>
-<!-- this btn is not yet assigned to js -->
+
   <a href="#" id="js-create-company-btn">Or Create a new Company</a>
-  <div id="js-new-company">
-  <!-- <div id="js-new-company" style="display:none;"> -->
+  <div id="js-new-company" style="display:none;">
+
     <%= f.fields_for :company, @position.build_company do |company_f| %>
-    <div>
+
+    <div class="form-group">
       <%= company_f.label :name %>
-      <%= company_f.text_field :name %>
+      <%= company_f.text_field :name, class: "form-control w-50" %>
     </div>
-    <div>
+
+    <div class="form-group">
       <%= company_f.label :url %>
-      <%= company_f.text_field :url %>
+      <%= company_f.text_field :url, class: "form-control w-25" %>
     </div>
-    <div>
+
+    <div class="form-group">
       <%= company_f.label :description %>
-      <%= company_f.text_field :description %>
+      <%= company_f.text_area :description, class: "form-control" %>
     </div>
     <% end %>
   </div>
 
+  <div>
   <%= f.submit class: "btn btn-info mt-5" %>
+  </div>
 <% end %>
 
 <div class="my-5">
