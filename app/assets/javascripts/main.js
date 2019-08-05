@@ -9,6 +9,7 @@ $(function() {
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname)) {
     displayPositionShow()
   } else if (window.location.pathname.includes("/positions/new")) {
+    diplayCompanyForm() 
     postCompanyandPosition()
   }
 })
@@ -173,6 +174,19 @@ function postCompanyandPosition() {
         alert("Successfuly created!")
         window.location.replace(`/companies/${data.company.id}/positions/${data.id}`)
     })
+  })
+}
+
+function diplayCompanyForm() {
+  console.log("want to display company form?")
+  document.getElementById("js-create-company-btn").addEventListener("click", function(e) {
+    e.preventDefault();
+    const div = document.getElementById("js-new-company")
+    if (div.style.display === "none") {
+      div.style.display = "block";
+    } else {
+      div.style.display = "none"
+    }
   })
 }
 
