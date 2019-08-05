@@ -37,8 +37,9 @@ class Company {
   }
   showHTML() {
     return `
-    <a href="${this.url}" class="card-text" target="_blank"><i class="fas fa-globe"></i> Website</a>
-    <p class="card-text js-description-${this.id}">${this.description}</p>
+    <a href="${this.url}" target="_blank"><i class="fas fa-globe"></i> Website</a>
+    <p class="js-description-${this.id} my-4">${this.description}</p>
+    <a href="/companies/${this.id}/edit" class="btn btn-outline-warning">Edit company's information</a>
     `
   }
 }
