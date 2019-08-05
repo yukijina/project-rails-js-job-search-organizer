@@ -2,8 +2,6 @@ $(function() {
   console.log("Loading..!")
   if (window.location.pathname === "/companies") {
     listeningCompaniesLoad()
-  } else if (window.location.pathname.includes("/users")) {
-    clickChecklistBtn();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && !window.location.pathname.includes("/positions")) {
     displayCompanyShow();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions")) {
@@ -12,7 +10,7 @@ $(function() {
     displayPositionShow()
   } else if (window.location.pathname.includes("/positions/new")) {
     postCompanyandPosition()
-  } 
+  }
 })
 
 class Company {
