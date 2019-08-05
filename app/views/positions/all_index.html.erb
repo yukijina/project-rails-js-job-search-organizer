@@ -25,7 +25,7 @@
       <td><%= display_check(position.full_time) %></td>
       <td>
         <%= button_to user_checklists_path(current_user.id), class: "btn btn-success btn-sm sm-font", data: {confirm: "You want to add this position to your list?"} do %>
-        Add to your checklist
+        Add to my checklist
           <input type="hidden" name="checklist[company_id]" value="<%= position.company_id %>">
           <input type="hidden" name="checklist[position_id]" value="<%= position.id %>">
         <% end  %>
