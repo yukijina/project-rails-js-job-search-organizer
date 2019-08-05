@@ -9,7 +9,7 @@ $(function() {
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname)) {
     displayPositionShow()
   } else if (window.location.pathname.includes("/positions/new")) {
-    diplayCompanyForm() 
+    diplayCompanyForm()
     postCompanyandPosition()
   }
 })
@@ -29,6 +29,7 @@ class Company {
     <p class="card-text js-description-${this.id}">${this.description.substring(0, 20)}...</p>
     <button class="js-read-more btn btn-info btn-sm" data-id="${this.id}"> Read More </button>
     <button class="js-positions btn btn-info btn-sm" data-id="${this.id}">Check Positions</button>
+    <a href="/companies/${this.id}/edit" class="btn btn-outline-warning btn-sm">Edit this company</a>
     <hr style="margin: 30px;">
     <div class="append-positions-${this.id}" style="display:none;"></div>
     </div>
@@ -63,8 +64,6 @@ class Position {
       </div>
     `
   }
-
-  //href="/companies/${this.companyId}/positions/${this.id}"
   positionDetailsHTML() {
     return `
       <h2>${this.title}</h2>
@@ -74,6 +73,7 @@ class Position {
       <p>Position Created: ${this.created}</p>
       <p>Updated: ${this.updated}</p>
       <a href="/companies/${this.companyId}/positions" class="js-add-checklist btn btn-outline-info btn-sm" data-id="${this.id}" data-companyid="${this.companyId}">Go to List</a>
+      <a href="/companies/${this.companyId}/positions/${this.id}/edit" class="btn btn-outline-warning btn-sm">Edit this position</a>
     `
   }
 }
@@ -132,7 +132,6 @@ function positionDetails() {
     const positionId = this.dataset.id;
     const companyId = this.dataset.companyid;
     $.get("/companies/" + companyId + "/positions/" + positionId + ".json", function(res) {
-      console.log(res)
         const position = new Position(res)
         const positionDiv = document.getElementById(`position-wrapper-${positionId}`)
         positionDiv.innerHTML = position.positionDetailsHTML();
@@ -168,7 +167,6 @@ function postCompanyandPosition() {
   $("form").submit(function(e) {
     e.preventDefault();
     const values = $(this).serialize();
-    console.log(values)
     $.post('/positions', values)
     .done(function(data) {
         alert("Successfuly created!")
