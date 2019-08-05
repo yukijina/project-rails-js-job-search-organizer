@@ -1,1 +1,43 @@
-<h1>All Positions</h1>
+<h1 class="my-5">All Positions</h1>
+
+<p class="text-danger my-4"><%= flash[:message] %></p>
+<table class="table table-borderless sm-font">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Position</th>
+      <th scope="col">Description</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Full Time</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @positions.each do |position| %>
+      <tr>
+      <td><%= link_to position.title, company_position_path(position.company, position) %></td>
+      <td><%= position.description %></td>
+      <td><%= display_salary(position.salary) %></td>
+      <td><%= display_check(position.full_time) %></td>
+      <td>
+        <%= button_to user_checklists_path(current_user.id), class: "btn btn-success btn-sm sm-font", data: {confirm: "You want to add this position to your list?"} do %>
+        Add to your checklist
+          <input type="hidden" name="checklist[company_id]" value="<%= position.company_id %>">
+          <input type="hidden" name="checklist[position_id]" value="<%= position.id %>">
+        <% end  %>
+      </td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="mt-5">
+  <%= link_to "Create a new position", new_position_path, class: "btn btn-info btn-sm"  %>
+
+  <%= link_to "Check all companies", companies_path, class: "btn btn-info btn-sm" %>
+
+</div>
+
+<div class="my-5">
+  <%= link_to 'Back', url_for(:back) %>
+</div>
