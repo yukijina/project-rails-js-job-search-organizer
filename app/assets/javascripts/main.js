@@ -2,15 +2,15 @@ $(function() {
   console.log("Loading..!")
   if (window.location.pathname === "/companies") {
     listeningCompaniesLoad()
+  } else if (window.location.pathname.includes("/positions/new")) {
+    toggleCompanyForm()
+    postCompanyandPosition()
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && !window.location.pathname.includes("/positions")) {
     displayCompanyShow();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions") || window.location.pathname.includes("/positions")) {
     diplayWholeDescription();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname)) {
     displayPositionShow()
-  } else if (window.location.pathname.includes("/positions/new")) {
-    diplayCompanyForm()
-    postCompanyandPosition()
   }
 })
 
@@ -166,20 +166,8 @@ function displayCompanyShow() {
   }
 }
 
-//Company New page. Post data.
-function postCompanyandPosition() {
-  $("form").submit(function(e) {
-    e.preventDefault();
-    const values = $(this).serialize();
-    $.post('/positions', values)
-    .done(function(data) {
-        alert("Successfuly created!")
-        window.location.replace(`/companies/${data.company.id}/positions/${data.id}`)
-    })
-  })
-}
-
-function diplayCompanyForm() {
+//Company New page.
+function toggleCompanyForm() {
   console.log("want to display company form?")
   document.getElementById("js-create-company-btn").addEventListener("click", function(e) {
     e.preventDefault();
@@ -191,6 +179,21 @@ function diplayCompanyForm() {
     }
   })
 }
+
+//Company New page. Post data.
+function postCompanyandPosition() {
+  console.log("posting")
+  $("form").submit(function(e) {
+    e.preventDefault();
+    const values = $(this).serialize();
+    $.post('/positions', values)
+    .done(function(data) {
+      window.location.replace(`/companies/${data.company.id}/positions/${data.id}`)
+      alert("Successfuly created!")
+    })
+  })
+}
+
 
 function diplayWholeDescription() {
   console.log("change descriptin")
