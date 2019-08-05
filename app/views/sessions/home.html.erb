@@ -18,7 +18,7 @@
     <%= link_to image_tag('btn_google_signin_light_normal_web.png'), '/auth/google_oauth2' %>
 
     <h5 class="mt-5">Don't have an account?</h5>
-    <%= link_to "Sign Up", new_user_path, class: "btn btn-outline-info" %><br>
+    <%= link_to "Sign Up", new_user_path, class: "btn btn-dark" %><br>
   <% else %>
   <div class="col-4">
     <h5><strong><%= display_title(current_user.username) %></strong> is now logged in.</h5>
