@@ -1,19 +1,19 @@
 <h1 class="text-center my-5">Welcome to Job Search Organizer</h1>
 
 <!-- successfully logged out -->
-<p class="text-success"><%= flash[:message] %></p>
+<p class="text-success text-center"><%= flash[:message] %></p>
 
 <!-- require login -->
-<p class="text-danger"><%= flash[:alert] %></p>
+<p class="text-danger text-center"><%= flash[:alert] %></p>
 
 <div class="row my-5">
-  <div class="col-8">
-    <%= image_tag('hero.jpeg', class: "img-fluid")  %>
-  </div>
+  <!-- <div class="col-8">
+    <%#= image_tag('hero.jpeg', class: "img-fluid")  %>
+  </div> -->
 
   <% if !logged_in? %>
-  <div class="col-4">
-    <h5 class="mt-5">My Account</h5>
+  <div class="col-12 text-center">
+    <!-- <h5 class="mt-5">My Account</h5> -->
     <%= link_to "Log In", login_path, class: "btn btn-outline-dark" %> or
     <%= link_to image_tag('btn_google_signin_light_normal_web.png'), '/auth/google_oauth2' %>
 
