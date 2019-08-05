@@ -20,9 +20,9 @@
     <h5 class="mt-5">Don't have an account?</h5>
     <%= link_to "Sign Up", new_user_path, class: "btn btn-dark" %><br>
   <% else %>
-  <div class="col-4">
+  <div class="col-12 text-center">
     <h5><strong><%= display_title(current_user.username) %></strong> is now logged in.</h5>
-    <p><%= link_to "Go to your checklist", user_checklists_path(current_user) %></p>
+    <p><%= link_to "Go to my checklist", user_checklists_path(current_user) %></p>
   </div>
   <% end %>
 
