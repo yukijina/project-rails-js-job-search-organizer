@@ -3,20 +3,22 @@ class PositionsController < ApplicationController
 
   def index
     @company = Company.find_by(id: params[:company_id])
-    @positions = @company.positions if @company
-    @allpositions = Position.all
     if @company.nil?
-      respond_to do |format|
-        #need to create all positions page
-        format.html { render :index}
-        format.json { render json: @allpositions}
-      end
+      redirect_to companies_path
     else
     @positions = @company.positions
       respond_to do |format|
         format.html { render :index}
         format.json { render json: @positions}
       end
+    end
+  end
+
+  def all_index
+    @positions = Position.all
+    respond_to do |format|
+      format.html { render :all_index }
+      format.json { render json: @positions }
     end
   end
 
