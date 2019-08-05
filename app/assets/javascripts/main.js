@@ -11,7 +11,7 @@ $(function() {
   } else if (window.location.pathname.includes("/positions/new")) {
     diplayCompanyForm()
     postCompanyandPosition()
-  } 
+  }
 })
 
 class Company {
@@ -57,12 +57,15 @@ class Position {
   }
   positionFormatHTML() {
     return `
-      <div id="position-wrapper-${this.id}" class="mb-4">
-        <h2>${this.title}</h2>
-        <p>${this.description.substring(0, 20)}...</p>
-        <p>Salary: ${this.salary} a year</p>
-        <button class="js-position btn btn-outline-info btn-sm" data-id="${this.id}" data-companyid="${this.companyId}">More info</button>
+    <div class="card">
+      <div id="position-wrapper-${this.id}" class="card-body">
+        <h5 class="card-title">${this.title}</h5>
+        <p class="card-text">${this.description.substring(0, 20)}...</p>
+        <p class="card-text">Salary: ${this.salary} a year
+          <button class="js-position btn btn-outline-info btn-sm d-inline" data-id="${this.id}" data-companyid="${this.companyId}">More info</button>
+        </p>
       </div>
+    </div>
     `
   }
   positionDetailsHTML() {
