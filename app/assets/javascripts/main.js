@@ -4,14 +4,14 @@ $(function() {
     listeningCompaniesLoad()
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && !window.location.pathname.includes("/positions")) {
     displayCompanyShow();
-  } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions")) {
+  } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions") || window.location.pathname.includes("/positions")) {
     diplayWholeDescription();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname)) {
     displayPositionShow()
   } else if (window.location.pathname.includes("/positions/new")) {
     diplayCompanyForm()
     postCompanyandPosition()
-  }
+  } 
 })
 
 class Company {
@@ -104,7 +104,7 @@ function clickReadMore() {
   })
 }
 
-//Display positions in index page
+//Display positions in company's index page
 function displayPositions() {
   $(".js-positions").on("click", function(e) {
     e.preventDefault();
