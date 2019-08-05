@@ -19,14 +19,14 @@
 </div>
 
 <div class="mt-5">
-  <%= button_to user_checklists_path(current_user.id), class: "btn btn-success", data: {confirm: "You want to add this position to your list?"} do %>
+  <%= button_to user_checklists_path(current_user.id), class: "btn btn-success mb-3", data: {confirm: "You want to add this position to your list?"} do %>
     Add to my checklist
     <input type="hidden" name="checklist[company_id]" value="<%= @position.company_id %>">
     <input type="hidden" name="checklist[position_id]" value="<%= @position.id %>">
   <% end  %>
 
   <% if current_user.admin? %>
-    <%= link_to "Edit this position? ", edit_company_position_path(@position.company, @position), class: "btn btn-warning" %>
+    <%= link_to "Edit this position", edit_company_position_path(@position.company, @position), class: "btn btn-outline-warning" %>
   <% end %>
 </div>
 
