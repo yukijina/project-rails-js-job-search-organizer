@@ -1,11 +1,11 @@
 # Job Search Organizer
 
-Flatiron School Ruby on Rails project.
+Flatiron School Ruby on Rails with JavaScript Project.
 
 ## About this project
-User can signup, log in and log out. User can also log in through third party log in(Google).
-User can track their job application process in their own checklists.
-User can create a company and position, however only admin can edit after they are created.
+A user can signup, log in and log out. A user can also log in through a third party log in(Google).
+Users can track their job application process in their own checklists.
+Users can create a company and position, however only admin can edit after they are created.
 
 
 ### Ruby version
@@ -17,10 +17,10 @@ Make sure you have Ruby, Bundler.
 
 ## Usage
 ### 1. Check out the repository
-`git clone git@github.com:yukijina/project-rails-job-search-organizer.git`
+`git clone git@github.com:yukijina/project-rails-js-job-search-organizer.git`
 
 ### 2. Go to the file
-`cd project-rails-job-search-organizer`
+`cd project-rails-js-job-search-organizer`
 
 ### 3. Bundle install
 `bundle`
@@ -43,7 +43,7 @@ Only admin can edit a company and a position.
 If you want to try admin experience, please sign up with admin_code 007.
 
 ## Contributing
-Bug reports and pull requests are welcome on GitHub at https://github.com/yukijina/project-rails-job-search-organizer. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/yukijina/project-rails-js-job-search-organizer. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
 ## License
 This project is licensed under the MIT License.
