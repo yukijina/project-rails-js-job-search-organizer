@@ -5,6 +5,8 @@ $(function() {
   } else if (window.location.pathname.includes("/positions/new")) {
     toggleCompanyForm()
     postCompanyandPosition()
+  } else if (window.location.pathname.includes("/edit")) {
+    toggleCompanyForm()
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && !window.location.pathname.includes("/positions")) {
     displayCompanyShow();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions") || window.location.pathname.includes("/positions")) {
