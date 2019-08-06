@@ -86,9 +86,9 @@ class Position {
 
 
 function listeningCompaniesLoad() {
-  $.get("/companies" + ".json", function(res) {
+  $.get("/companies" + ".json", (res) => {
     const wrapper = document.getElementById("companies-wrapper");
-    res.forEach(function(companyData) {
+    res.forEach((companyData) => {
       const company = new Company(companyData)
       wrapper.innerHTML += company.indexHTML();
       clickReadMore();
@@ -101,7 +101,7 @@ function clickReadMore() {
   $(".js-read-more").on("click", function(e) {
     e.preventDefault();
     const id = this.dataset.id;
-    $.get("/companies/" + id + ".json", function(res) {
+    $.get("/companies/" + id + ".json", (res) => {
       const company = new Company(res)
       const descriptionDiv = document.querySelector(`.js-description-${company.id}`);
       descriptionDiv.innerText = company.description
@@ -114,17 +114,15 @@ function displayPositions() {
   $(".js-positions").on("click", function(e) {
     e.preventDefault();
     const companyId = this.dataset.id;
-    $.get("/companies/" + companyId + ".json", function(res) {
-      let positions = res.positions.map(function(position) {
+    $.get("/companies/" + companyId + ".json", (res) => {
+      let positions = res.positions.map((position) => {
         return new Position(position).positionFormatHTML()
       }).join("")
       const div = document.querySelector(`.append-positions-${companyId}`)
-        div.innerHTML = positions
-        if (div.style.display === "none") {
-          div.style.display = "block"
-        } else {
-          div.style.display = "none"
-        }
+        div.innerHTML = positions;
+
+        div.style.display === "none" ? div.style.display = "block" : div.style.display = "none";
+
         positionDetails()
     })
   })
@@ -137,7 +135,7 @@ function positionDetails() {
     console.log("clicked!")
     const positionId = this.dataset.id;
     const companyId = this.dataset.companyid;
-    $.get("/companies/" + companyId + "/positions/" + positionId + ".json", function(res) {
+    $.get("/companies/" + companyId + "/positions/" + positionId + ".json", (res) => {
         const position = new Position(res)
         const positionDiv = document.getElementById(`position-wrapper-${positionId}`)
         positionDiv.innerHTML = position.positionDetailsHTML();
@@ -153,11 +151,11 @@ function displayCompanyShow() {
     let positionsWrapper = document.getElementById("positions-wrapper");
     const id = positionsWrapper.dataset.id;
 
-    $.get("/companies/" + id + ".json", function(res) {
+    $.get("/companies/" + id + ".json", (res) => {
       const company = new Company(res)
       companyWrapper.innerHTML += company.showHTML();
 
-      res.positions.forEach(function(positionData) {
+      res.positions.forEach((positionData) => {
         let position = new Position(positionData)
         positionsWrapper.innerHTML += position.positionFormatHTML();
         positionDetails();
@@ -165,6 +163,7 @@ function displayCompanyShow() {
     })
   } else {
     return;
+    //this prevent other companies/id routes access this function
   }
 }
 
@@ -174,11 +173,8 @@ function toggleCompanyForm() {
   document.getElementById("js-create-company-btn").addEventListener("click", function(e) {
     e.preventDefault();
     const div = document.getElementById("js-new-company")
-    if (div.style.display === "none") {
-      div.style.display = "block";
-    } else {
-      div.style.display = "none"
-    }
+
+    div.style.display === "none" ? div.style.display = "block" : div.style.display = "none";
   })
 }
 
@@ -189,39 +185,23 @@ function postCompanyandPosition() {
     e.preventDefault();
     const values = $(this).serialize();
     $.post('/positions', values)
-    .done(function(data) {
+    .done((data) => {
       window.location.replace(`/companies/${data.company.id}/positions/${data.id}`)
       alert("Successfuly created!")
     })
   })
 }
 
-
+//Position index and all_index paga
 function diplayWholeDescription() {
   console.log("change descriptin")
   $(".js-truncate").on("click", function(e) {
     e.preventDefault();
     let positionId = this.dataset.id;
     let companyId = this.dataset.companyid;
-    $.get("/companies/" + companyId + "/positions/" + positionId + ".json", function(res) {
+    $.get("/companies/" + companyId + "/positions/" + positionId + ".json", (res) => {
       let link = document.getElementsByClassName(`link-${positionId}`)[0];
       link.innerText = new Position(res).description;
     })
   })
 }
-
-// Render via Ruby
-// function listeningPositionsLoad() {
-//   console.log("loading all the positions!")
-//   $.get("/positions" + ".json", function(res) {
-//     const div = document.getElementById("all-positions");
-//     res.forEach(function(positionData) {
-//
-//       let position = new Position(positionData)
-//       let companyName = new Company(positionData.company)
-//       let text = companyName.name
-//       div.innerHTML += text + position.positionFormatHTML();
-//       positionDetails()
-//     })
-//   })
-// }
