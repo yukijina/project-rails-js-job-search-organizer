@@ -16,6 +16,9 @@ $(function() {
   }
 })
 
+//specific id
+//swtch
+
 class Company {
   constructor(data) {
     this.id = data.id;
@@ -84,25 +87,28 @@ class Position {
   }
 }
 
-
 function listeningCompaniesLoad() {
-  $.get("/companies" + ".json", (res) => {
-    const wrapper = document.getElementById("companies-wrapper");
-    res.forEach((companyData) => {
+  const wrapper = document.getElementById("companies-wrapper");
+  fetch("/companies.json")
+  .then(resp => resp.json())
+  .then(jsonData =>
+    jsonData.forEach((companyData) => {
       const company = new Company(companyData)
       wrapper.innerHTML += company.indexHTML();
       clickReadMore();
       displayPositions();
     })
-  })
+  )
 }
 
 function clickReadMore() {
   $(".js-read-more").on("click", function(e) {
     e.preventDefault();
     const id = this.dataset.id;
-    $.get("/companies/" + id + ".json", (res) => {
-      const company = new Company(res)
+    fetch("/companies/" + id + ".json")
+    .then(resp => resp.json())
+    .then(jsonData => {
+      const company = new Company(jsonData)
       const descriptionDiv = document.querySelector(`.js-description-${company.id}`);
       descriptionDiv.innerText = company.description
     })
@@ -114,8 +120,10 @@ function displayPositions() {
   $(".js-positions").on("click", function(e) {
     e.preventDefault();
     const companyId = this.dataset.id;
-    $.get("/companies/" + companyId + ".json", (res) => {
-      let positions = res.positions.map((position) => {
+    fetch("/companies/" + companyId + ".json")
+    .then(resp => resp.json())
+    .then(jsonData => {
+      let positions = jsonData.positions.map((position) => {
         return new Position(position).positionFormatHTML()
       }).join("")
       const div = document.querySelector(`.append-positions-${companyId}`)
@@ -135,11 +143,14 @@ function positionDetails() {
     console.log("clicked!")
     const positionId = this.dataset.id;
     const companyId = this.dataset.companyid;
-    $.get("/companies/" + companyId + "/positions/" + positionId + ".json", (res) => {
-        const position = new Position(res)
-        const positionDiv = document.getElementById(`position-wrapper-${positionId}`)
-        positionDiv.innerHTML = position.positionDetailsHTML();
-      })
+
+    fetch("/companies/" + companyId + "/positions/" + positionId + ".json")
+    .then(resp => resp.json())
+    .then(jsonData => {
+      const position = new Position(jsonData)
+      const positionDiv = document.getElementById(`position-wrapper-${positionId}`)
+      positionDiv.innerHTML = position.positionDetailsHTML();
+    })
   })
 }
 
@@ -150,12 +161,13 @@ function displayCompanyShow() {
   if (companyWrapper !== null) {
     let positionsWrapper = document.getElementById("positions-wrapper");
     const id = positionsWrapper.dataset.id;
-
-    $.get("/companies/" + id + ".json", (res) => {
-      const company = new Company(res)
+    fetch("/companies/" + id + ".json")
+    .then(resp => resp.json())
+    .then(jsonData => {
+      const company = new Company(jsonData)
       companyWrapper.innerHTML += company.showHTML();
 
-      res.positions.forEach((positionData) => {
+      jsonData.positions.forEach((positionData) => {
         let position = new Position(positionData)
         positionsWrapper.innerHTML += position.positionFormatHTML();
         positionDetails();
@@ -184,6 +196,13 @@ function postCompanyandPosition() {
   $("form").submit(function(e) {
     e.preventDefault();
     const values = $(this).serialize();
+    // fetch("/positions.json", {
+      //     method: "post",
+      //     body: values,
+      //     headers: {
+        //       "Content-Type": "application/json"
+        //     }
+        //   }).then(res => console.log(res.json()))
     $.post('/positions', values)
     .done((data) => {
       window.location.replace(`/companies/${data.company.id}/positions/${data.id}`)
@@ -194,14 +213,16 @@ function postCompanyandPosition() {
 
 //Position index and all_index paga
 function diplayWholeDescription() {
-  console.log("change descriptin")
+  console.log("change description")
   $(".js-truncate").on("click", function(e) {
     e.preventDefault();
     let positionId = this.dataset.id;
     let companyId = this.dataset.companyid;
-    $.get("/companies/" + companyId + "/positions/" + positionId + ".json", (res) => {
+    fetch("/companies/" + companyId + "/positions/" + positionId + ".json")
+    .then(resp => resp.json())
+    .then(jsonData => {
       let link = document.getElementsByClassName(`link-${positionId}`)[0];
-      link.innerText = new Position(res).description;
+      link.innerText = new Position(jsonData).description;
     })
   })
 }
