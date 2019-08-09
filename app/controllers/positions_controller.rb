@@ -1,4 +1,5 @@
 class PositionsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :require_login
 
   def index
@@ -34,8 +35,10 @@ class PositionsController < ApplicationController
     end
 
     if @position.save
-      render json: @position, status: 201
-      #redirect_to company_positions_path(@position.company)
+      respond_to do |format|
+        format.html { redirect_to company_position_path(@position.company, @position) }
+        format.json { render json: @position}
+      end
     else
       render :new
     end
@@ -43,7 +46,6 @@ class PositionsController < ApplicationController
 
   def show
     @position = Position.find_by(id: params[:id])
-    #company_page_not_found if @position.nil?
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @position }
