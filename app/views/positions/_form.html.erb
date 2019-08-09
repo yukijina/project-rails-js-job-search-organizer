@@ -33,7 +33,7 @@
   <h5>CHOOSE OR CREATE A COMPANY FOR THIS POSITION:</h5>
 
   <label>Select a Company</label>
-    <%= f.hidden_field :position_id, value: @position.id %>
+    <%#= f.hidden_field :position_id, value: @position.id %>
     <%= f.collection_select :company_id, Company.all, :id, :name, {prompt: "Select"}, class: "form-control my-1 w-25" %>
 <br>
 
