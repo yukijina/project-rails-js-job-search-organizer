@@ -1,5 +1,5 @@
 class PositionsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  #skip_before_action :verify_authenticity_token
   before_action :require_login
 
   def index
@@ -28,6 +28,7 @@ class PositionsController < ApplicationController
   end
 
   def create
+    #binding.pry
     @position = Position.new(position_params)
 
     if params[:position][:company_id]

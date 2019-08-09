@@ -203,19 +203,32 @@ function postCompanyandPosition() {
     //   values = $([this.utf8, this.authenticity_token, this.position_title, this.position_description,this.position_salary, this.position_company_attributes_name, this.position_company_attributes_url, this.position_company_attributes_description]).serialize()
     // }
 console.log(values)
-    fetch('/positions', {
-          method: "post",
-          body: values,
-          headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            }
-          }).then(res => console.log(res.json()))
+    // fetch('/positions', {
+    //       method: "post",
+    //       body: values,
+    //       headers: {
+    //           "Content-Type": "application/json",
+    //           "Accept": "application/json"
+    //         }
+    //       }).then(res => console.log(res.json()))
+
+    Rails.ajax({
+        url: "/positions.json",
+        type: "POST",
+        data: values,
+        success: function(data) {
+          console.log(data)
+          window.location.replace(`/companies/${data.company.id}/positions/${data.id}`)
+          alert("Successfuly created!")
+        }
+    })
+
+
 
     // If we use $.post jquery
     //  $.post('/positions.json', values)
     // .done((data) => {
-    //   // console.log(data)
+    //    console.log(data)
     //   window.location.replace(`/companies/${data.company.id}/positions/${data.id}`)
     //   alert("Successfuly created!")
     // })
@@ -237,3 +250,10 @@ function diplayWholeDescription() {
     })
   })
 }
+
+
+// $.post
+// utf8=%E2%9C%93&authenticity_token=08JCJ%2F5LGmzHnPnMTy4B9g0ScOVQvvgSBqb7Kno1MMf19I2F3uxxcLceFL9j0sRK2uWYkhIBlsDueIb3h932ZQ%3D%3D&position%5Btitle%5D=front-end+web+developer&position%5Bdescription%5D=test+gruhduirghaurgauhu&position%5Bsalary%5D=100&position%5Bfull_time%5D=0&position%5Bcompany_id%5D=1&position%5Bcompany_attributes%5D%5Bname%5D=&position%5Bcompany_attributes%5D%5Burl%5D=&position%5Bcompany_attributes%5D%5Bdescription%5D=
+
+
+// utf8=%E2%9C%93&authenticity_token=%2Fakm70rcZzsZP6dptQKaUaK0RvigmWp9%2FLf54i2okt%2Fbn%2BlNansMJ2m9ShqZ%2Fl%2FtdUOuj%2BImBK8UaYQ%2F0EBUfQ%3D%3D&position%5Btitle%5D=it+test&position%5Bdescription%5D=huguaghaughau++wonderful+&position%5Bsalary%5D=190&position%5Bfull_time%5D=0&position%5Bcompany_id%5D=1&position%5Bcompany_attributes%5D%5Bname%5D=&position%5Bcompany_attributes%5D%5Burl%5D=&position%5Bcompany_attributes%5D%5Bdescription%5D=
