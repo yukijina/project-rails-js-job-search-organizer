@@ -24,7 +24,7 @@
   <tbody>
     <% @checklists.each do |checklist| %>
     <tr>
-      <td><%= link_to display_title(checklist.company.name), company_path(checklist.company) %>
+      <td><%= link_to checklist.company.name, company_path(checklist.company) %>
       </td>
       <td><%= link_to display_title(checklist.position.title), company_position_path(checklist.company, checklist.position) %></td>
       <td><%= display_check(checklist.position.full_time) %></td>
