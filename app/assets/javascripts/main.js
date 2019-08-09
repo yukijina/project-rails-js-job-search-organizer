@@ -2,11 +2,9 @@ $(function() {
   console.log("Loading..!")
   if (window.location.pathname === "/companies") {
     listeningCompaniesLoad()
-  } else if (window.location.pathname.includes("/positions/new")) {
+  } else if (window.location.pathname.includes("/positions/new") || (window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/edit"))){
     toggleCompanyForm()
     postCompanyandPosition()
-  } else if (window.location.pathname.includes("/edit")) {
-    toggleCompanyForm()
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && !window.location.pathname.includes("/positions")) {
     displayCompanyShow();
   } else if (window.location.pathname.includes("/companies") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/positions") || window.location.pathname.includes("/positions")) {
@@ -203,25 +201,25 @@ function postCompanyandPosition() {
     //   values = $([this.utf8, this.authenticity_token, this.position_title, this.position_description,this.position_salary, this.position_company_attributes_name, this.position_company_attributes_url, this.position_company_attributes_description]).serialize()
     // }
 console.log(values)
-    // fetch('/positions', {
-    //       method: "post",
-    //       body: values,
-    //       headers: {
-    //           "Content-Type": "application/json",
-    //           "Accept": "application/json"
-    //         }
-    //       }).then(res => console.log(res.json()))
+    fetch("/positions", {
+          method: "post",
+          body: values,
+          headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            }
+          }).then(res => console.log(res.json()))
 
-    Rails.ajax({
-        url: "/positions.json",
-        type: "POST",
-        data: values,
-        success: function(data) {
-          console.log(data)
-          window.location.replace(`/companies/${data.company.id}/positions/${data.id}`)
-          alert("Successfuly created!")
-        }
-    })
+    // Rails.ajax({
+    //     url: "/positions.json",
+    //     type: "POST",
+    //     data: values,
+    //     success: function(data) {
+    //       console.log(data)
+    //       window.location.replace(`/companies/${data.company.id}/positions/${data.id}`)
+    //       alert("Successfuly created!")
+    //     }
+    //})
 
 
 
