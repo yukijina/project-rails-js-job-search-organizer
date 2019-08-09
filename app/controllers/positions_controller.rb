@@ -28,7 +28,6 @@ class PositionsController < ApplicationController
   end
 
   def create
-    #binding.pry
     @position = Position.new(position_params)
 
     if params[:position][:company_id]
