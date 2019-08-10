@@ -4,7 +4,7 @@ Flatiron School Ruby on Rails with JavaScript Project.
 
 ## About this project
 A user can signup, log in and log out. A user can also log in through a third party log in(Google).
-Users can track their job application process in their own checklists.
+Users can track their job application processes in their own checklists.
 Users can create a company and position, however only admin can edit after they are created.
 
 
