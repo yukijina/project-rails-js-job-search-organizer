@@ -2,6 +2,8 @@ $(function() {
   console.log("Loading..!")
   if (window.location.pathname === "/companies") {
     listeningCompaniesLoad()
+  } else if (window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/edit")){
+    toggleCompanyForm()
   } else if (window.location.pathname.includes("/positions/new") || (window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/edit"))){
     toggleCompanyForm()
     postCompanyandPosition()
@@ -193,35 +195,20 @@ function postCompanyandPosition() {
   console.log("posting")
   $("form").submit(function(e) {
     e.preventDefault();
-    //debugger;
     var values = $(this).serialize();
-    // if (this.company_id !== "") {
-    //   var values = $([this.utf8, this.authenticity_token, this.position_title, this.position_description, this.position_salary, this.position_company_id]).serialize()
-    // } else {
-    //   values = $([this.utf8, this.authenticity_token, this.position_title, this.position_description,this.position_salary, this.position_company_attributes_name, this.position_company_attributes_url, this.position_company_attributes_description]).serialize()
-    // }
-console.log(values)
-    fetch("/positions", {
-          method: "post",
-          body: values,
-          headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            }
-          }).then(res => console.log(res.json()))
+    console.log(values)
 
-    // Rails.ajax({
-    //     url: "/positions.json",
-    //     type: "POST",
-    //     data: values,
-    //     success: function(data) {
-    //       console.log(data)
-    //       window.location.replace(`/companies/${data.company.id}/positions/${data.id}`)
-    //       alert("Successfuly created!")
-    //     }
-    //})
-
-
+    // Rials.ajax works
+    Rails.ajax({
+        url: "/positions.json",
+        type: "POST",
+        data: values,
+        success: function(data) {
+          console.log(data)
+          window.location.replace(`/companies/${data.company.id}/positions/${data.id}`)
+          alert("Successfuly created!")
+        }
+    })
 
     // If we use $.post jquery
     //  $.post('/positions.json', values)
@@ -230,6 +217,15 @@ console.log(values)
     //   window.location.replace(`/companies/${data.company.id}/positions/${data.id}`)
     //   alert("Successfuly created!")
     // })
+
+    // fetch("/positions.json", {
+      //       method: "post",
+      //       body: values,
+      //       headers: {
+        //           "Content-Type": "application/json",
+        //           "Accept": "application/json"
+        //         }
+        //       }).then(res => console.log(res.json()))
   })
 }
 
