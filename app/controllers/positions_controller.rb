@@ -1,5 +1,4 @@
 class PositionsController < ApplicationController
-  #skip_before_action :verify_authenticity_token
   before_action :require_login
 
   def index
@@ -73,5 +72,13 @@ class PositionsController < ApplicationController
     def position_params
       params.require(:position).permit(:title, :description, :salary, :full_time, :company_id, :company_attributes => [:name, :url, :description])
     end
+
+    # def with_company_params
+    #     params.require(:position).permit(:title, :description, :salary, :full_time,:company_attributes => [:name, :url, :description])
+    # end
+    #
+    # def test_params
+    #     params.require(:position).permit(:title, :description, :salary, :full_time, :company_id)
+    # end
 
 end
