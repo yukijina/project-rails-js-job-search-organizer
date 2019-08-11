@@ -123,7 +123,7 @@ function displayPositions() {
     fetch("/companies/" + companyId + ".json")
     .then(resp => resp.json())
     .then(jsonData => {
-      let positions = jsonData.positions.map((position) => {
+      const positions = jsonData.positions.map((position) => {
         return new Position(position).positionFormatHTML()
       }).join("")
       const div = document.querySelector(`.append-positions-${companyId}`)
@@ -157,9 +157,9 @@ function positionDetails() {
 // Company Show Page
 function displayCompanyShow() {
   console.log("Now company show")
-  let companyWrapper = document.getElementById("company-wrapper");
+  const companyWrapper = document.getElementById("company-wrapper");
   if (companyWrapper !== null) {
-    let positionsWrapper = document.getElementById("positions-wrapper");
+    const positionsWrapper = document.getElementById("positions-wrapper");
     const id = positionsWrapper.dataset.id;
     fetch("/companies/" + id + ".json")
     .then(resp => resp.json())
@@ -168,7 +168,7 @@ function displayCompanyShow() {
       companyWrapper.innerHTML += company.showHTML();
 
       jsonData.positions.forEach((positionData) => {
-        let position = new Position(positionData)
+        const position = new Position(positionData)
         positionsWrapper.innerHTML += position.positionFormatHTML();
         positionDetails();
       })
@@ -195,7 +195,7 @@ function postCompanyandPosition() {
   console.log("posting")
   $("form").submit(function(e) {
     e.preventDefault();
-    var values = $(this).serialize();
+    const values = $(this).serialize();
     console.log(values)
 
     // Rials.ajax works
@@ -210,7 +210,7 @@ function postCompanyandPosition() {
         }
     })
 
-    // If we use $.post jquery
+    // $.post jquery also works
     //  $.post('/positions.json', values)
     // .done((data) => {
     //    console.log(data)
@@ -218,6 +218,7 @@ function postCompanyandPosition() {
     //   alert("Successfuly created!")
     // })
 
+    // fetch - got error
     // fetch("/positions.json", {
       //       method: "post",
       //       body: values,
