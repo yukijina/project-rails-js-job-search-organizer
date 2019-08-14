@@ -1,4 +1,5 @@
 $(function() {
+  sortPositions()
   console.log("Loading..!")
   if (window.location.pathname === "/companies") {
     listeningCompaniesLoad()
@@ -59,6 +60,7 @@ class Position {
     this.created = data.created_at.slice(0,10);
     this.updated = data.updated_at.slice(0,10);
     this.companyId = data.company_id;
+    //this.companyName = data.company.name;
   }
   positionFormatHTML() {
     return `
@@ -83,6 +85,17 @@ class Position {
       <p>Updated: ${this.updated}</p>
       <a href="/companies/${this.companyId}/positions" class="js-add-checklist btn btn-outline-info btn-sm" data-id="${this.id}" data-companyid="${this.companyId}">Go to List</a>
       <a href="/companies/${this.companyId}/positions/${this.id}/edit" class="btn btn-outline-warning btn-sm">Edit this position</a>
+    `
+  }
+  tableHTML() {
+    return `
+    <tr>
+    <td><a href="/companies/${this.companyId}/positions/${this.id}">${this.title}</a></td>
+    <td><a href="companies/${this.companyId}">${this.companyId}</a></td>
+    <td><a href="#" class="js-truncate link-${this.id}" data-id="${this.id}" data-companyid="${this.companyId}">${this.description.substring(0,20)}..</a></td>
+    <td>${this.salary}</td>
+    <td>${this.fullTime}</td>
+    </tr>
     `
   }
 }
@@ -246,6 +259,27 @@ function diplayWholeDescription() {
   })
 }
 
+function sortPositions() {
+  $("#js-sort").on("click", function(e) {
+    e.preventDefault();
+    const value = document.getElementById("js-value").value
+    fetch("/positions" + ".json")
+    .then(resp => resp.json())
+    .then(jsonData => {
+      const sortedPositions = jsonData.filter(function(position) {
+       return position.title.toLocaleLowerCase().includes(value)
+      })
+
+      $("#sorted-table tr").remove()
+      const table = document.getElementById("sorted-table")
+
+       sortedPositions.forEach((position) => {
+         table.innerHTML += new Position(position).tableHTML()
+       })
+       diplayWholeDescription()
+    })
+  })
+}
 
 // $.post
 // utf8=%E2%9C%93&authenticity_token=08JCJ%2F5LGmzHnPnMTy4B9g0ScOVQvvgSBqb7Kno1MMf19I2F3uxxcLceFL9j0sRK2uWYkhIBlsDueIb3h932ZQ%3D%3D&position%5Btitle%5D=front-end+web+developer&position%5Bdescription%5D=test+gruhduirghaurgauhu&position%5Bsalary%5D=100&position%5Bfull_time%5D=0&position%5Bcompany_id%5D=1&position%5Bcompany_attributes%5D%5Bname%5D=&position%5Bcompany_attributes%5D%5Burl%5D=&position%5Bcompany_attributes%5D%5Bdescription%5D=
