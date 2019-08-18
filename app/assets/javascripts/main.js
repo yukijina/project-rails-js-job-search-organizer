@@ -1,8 +1,9 @@
 $(function() {
-  sortPositions()
   console.log("Loading..!")
   if (window.location.pathname === "/companies") {
     listeningCompaniesLoad()
+  } else if (window.location.pathname === "/positions"){
+    sortPositions()
   } else if (window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/edit")){
     toggleCompanyForm()
   } else if (window.location.pathname.includes("/positions/new") || (window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/edit"))){
@@ -16,9 +17,6 @@ $(function() {
     displayPositionShow()
   }
 })
-
-//specific id
-//swtch
 
 class Company {
   constructor(data) {
@@ -60,7 +58,7 @@ class Position {
     this.created = data.created_at.slice(0,10);
     this.updated = data.updated_at.slice(0,10);
     this.companyId = data.company_id;
-    //this.companyName = data.company.name;
+    this.companyName = data.company.name
   }
   positionFormatHTML() {
     return `
@@ -89,9 +87,9 @@ class Position {
   }
   tableHTML() {
     return `
-    <tr>
-    <td><a href="/companies/${this.companyId}/positions/${this.id}">${this.title}</a></td>
-    <td><a href="companies/${this.companyId}">${this.companyId}</a></td>
+    <tr data-id="${this.id}">
+    <td class="js-position-title"><a href="/companies/${this.companyId}/positions/${this.id}">${this.title}</a></td>
+    <td id="js-add-company"><a href="companies/${this.companyId}">${this.companyName}</a></td>
     <td><a href="#" class="js-truncate link-${this.id}" data-id="${this.id}" data-companyid="${this.companyId}">${this.description.substring(0,20)}..</a></td>
     <td>${this.salary}</td>
     <td>${this.fullTime}</td>
@@ -100,6 +98,7 @@ class Position {
   }
 }
 
+//Company index page
 function listeningCompaniesLoad() {
   const wrapper = document.getElementById("companies-wrapper");
   fetch("/companies.json")
@@ -133,11 +132,13 @@ function displayPositions() {
   $(".js-positions").on("click", function(e) {
     e.preventDefault();
     const companyId = this.dataset.id;
-    fetch("/companies/" + companyId + ".json")
+    fetch("/positions" + ".json")
     .then(resp => resp.json())
     .then(jsonData => {
-      const positions = jsonData.positions.map((position) => {
-        return new Position(position).positionFormatHTML()
+      const positions = jsonData.map((position) => {
+        if (position.company_id === parseInt(companyId)) {
+          return new Position(position).positionFormatHTML()
+        }
       }).join("")
       const div = document.querySelector(`.append-positions-${companyId}`)
         div.innerHTML = positions;
@@ -181,6 +182,9 @@ function displayCompanyShow() {
       companyWrapper.innerHTML += company.showHTML();
 
       jsonData.positions.forEach((positionData) => {
+        //// HACK: position
+        /// need to assign company name. constructor has company_name
+        positionData.company = {name: company.name};
         const position = new Position(positionData)
         positionsWrapper.innerHTML += position.positionFormatHTML();
         positionDetails();
@@ -192,7 +196,7 @@ function displayCompanyShow() {
   }
 }
 
-//Company New page.
+//Company New page
 function toggleCompanyForm() {
   console.log("want to display company form?")
   document.getElementById("js-create-company-btn").addEventListener("click", function(e) {
@@ -243,7 +247,7 @@ function postCompanyandPosition() {
   })
 }
 
-//Position index and all_index paga
+//Position index and all_index page
 function diplayWholeDescription() {
   console.log("change description")
   $(".js-truncate").on("click", function(e) {
@@ -266,7 +270,8 @@ function sortPositions() {
     fetch("/positions" + ".json")
     .then(resp => resp.json())
     .then(jsonData => {
-      const sortedPositions = jsonData.filter(function(position) {
+
+       const sortedPositions = jsonData.filter(function(position) {
        return position.title.toLocaleLowerCase().includes(value)
       })
 
