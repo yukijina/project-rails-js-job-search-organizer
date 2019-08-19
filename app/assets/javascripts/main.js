@@ -93,6 +93,7 @@ class Position {
     <td><a href="#" class="js-truncate link-${this.id}" data-id="${this.id}" data-companyid="${this.companyId}">${this.description.substring(0,20)}..</a></td>
     <td>${this.salary}</td>
     <td>${this.fullTime}</td>
+    <td><a id="js-add-checklist" href="/companies/${this.companyId}/positions/${this.id}" class="btn btn-success btn-sm sm-font">Add to my checklist</a></td>
     </tr>
     `
   }
