@@ -4,6 +4,10 @@ class ChecklistsController < ApplicationController
   def index
     @user = User.find_by(id: params[:user_id])
     @user ? @checklists = @user.checklists : page_not_found
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @checklists }
+    end
   end
 
   def create
