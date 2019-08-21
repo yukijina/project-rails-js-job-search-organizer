@@ -5,7 +5,7 @@
 <p>&#10038; Can't find a position? You can create from <%= link_to "here", new_position_path %></p>
 
 <input id="js-value" type="text" />
-<button id="js-sort" class="btn btn-info btn-sm">Search</button>
+<button id="js-sort" class="btn btn-info btn-sm" data-userid="<%= current_user.id %>">Search</button>
 <%= link_to "All", positions_path, class: "btn btn-outline-info btn-sm" %>
 
 <table class="table table-borderless sm-font">
