@@ -17,10 +17,14 @@ class ChecklistsController < ApplicationController
 
     if @checklist.persisted?
       flash[:message] = "This position is already in your checklist."
-      redirect_back fallback_location: company_positions_path(company)
+      redirect_to user_checklists_path(@user)
     else
       @checklist.save
-      redirect_to user_checklists_path(@user)
+      respond_to do |format|
+        format.html { redirect_to user_checklists_path(@user) }
+        format.json { render json: @checklist }
+      end
+
     end
   end
 
