@@ -4,6 +4,7 @@ $(function() {
     listeningCompaniesLoad()
   } else if (window.location.pathname === "/positions"){
     sortPositions()
+    diplayWholeDescription()
   } else if (window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/edit")){
     toggleCompanyForm()
   } else if (window.location.pathname.includes("/positions/new") || (window.location.pathname.includes("/positions") && /\d/.test(window.location.pathname) && window.location.pathname.includes("/edit"))){
