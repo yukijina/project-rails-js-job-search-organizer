@@ -35,8 +35,6 @@ You can start the rails server using the command given below.
 
 Now you can visit the app with http://localhost:3000
 
-### You can also visit the app through Heroku
-visit: https://rails-job-search-organizer.herokuapp.com/
 
 #### Sing up as Admin
 Only admin can edit a company and a position.
